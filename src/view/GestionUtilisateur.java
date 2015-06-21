@@ -5,16 +5,21 @@
  */
 package view;
 
+import com.esprit.entites.Compte;
+import daoLayer.CompteDao;
+import java.util.List;
+import tables.UtilisateurAdapter;
+
 /**
  *
  * @author mac
  */
-public class TableauDeBord extends javax.swing.JFrame {
+public class GestionUtilisateur extends javax.swing.JFrame {
 
     /**
      * Creates new form TableauDeBord
      */
-    public TableauDeBord() {
+    public GestionUtilisateur() {
         initComponents();
     }
 
@@ -27,7 +32,10 @@ public class TableauDeBord extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        btnEnableUser = new javax.swing.JButton();
+        btnDisableUser = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userTableModel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         userManage = new javax.swing.JMenu();
@@ -40,11 +48,33 @@ public class TableauDeBord extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/20204_1201798667.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 240, -1));
+        btnEnableUser.setText("Activé");
+        btnEnableUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnableUserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnableUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 80, -1));
+
+        btnDisableUser.setText("Désactivé");
+        btnDisableUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisableUserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDisableUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
+
+        userTableModel.setBackground(new java.awt.Color(153, 153, 153));
+        userTableModel.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        userTableModel.setForeground(new java.awt.Color(255, 255, 255));
+        userTableModel.setModel(new UtilisateurAdapter());
+        userTableModel.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(userTableModel);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 860, 420));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 940, 510));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 1150, 600));
 
         userManage.setText("Utilisateurs");
         userManage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -55,11 +85,6 @@ public class TableauDeBord extends javax.swing.JFrame {
         jMenuBar1.add(userManage);
 
         guideManage.setText("Guides");
-        guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guideManageMouseClicked(evt);
-            }
-        });
         jMenuBar1.add(guideManage);
 
         experienceManage.setText("Experiences");
@@ -81,17 +106,34 @@ public class TableauDeBord extends javax.swing.JFrame {
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
-            GestionUtilisateur userManage = new GestionUtilisateur();
-            userManage.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_userManageMouseClicked
 
-    private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
+    private void btnEnableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableUserActionPerformed
         // TODO add your handling code here:
-            GestionGuide guideManage = new GestionGuide();
-            guideManage.setVisible(true);
-            this.setVisible(false);
-    }//GEN-LAST:event_guideManageMouseClicked
+
+        if(userTableModel.getSelectedRow() != -1){
+            CompteDao cDao = CompteDao.getInstance();
+            UtilisateurAdapter userAdapter = new UtilisateurAdapter();
+            List<Compte> listUser = userAdapter.getComptes();
+            Compte tmpCompte = listUser.get(userTableModel.getSelectedRow());
+            cDao.disableUser(tmpCompte.getId_compte(), true);
+            userTableModel.setModel(new UtilisateurAdapter());
+
+        }
+    }//GEN-LAST:event_btnEnableUserActionPerformed
+
+    private void btnDisableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisableUserActionPerformed
+        // TODO add your handling code here:
+        if(userTableModel.getSelectedRow() != -1){
+            CompteDao cDao = CompteDao.getInstance();
+            UtilisateurAdapter userAdapter = new UtilisateurAdapter();
+            List<Compte> listUser = userAdapter.getComptes();
+            Compte tmpCompte = listUser.get(userTableModel.getSelectedRow());
+            cDao.disableUser(tmpCompte.getId_compte(), false);
+            userTableModel.setModel(new UtilisateurAdapter());
+
+        }
+    }//GEN-LAST:event_btnDisableUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,33 +152,39 @@ public class TableauDeBord extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TableauDeBord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionUtilisateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TableauDeBord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionUtilisateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TableauDeBord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionUtilisateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TableauDeBord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionUtilisateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TableauDeBord().setVisible(true);
+                new GestionUtilisateur().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDisableUser;
+    private javax.swing.JButton btnEnableUser;
     private javax.swing.JMenu experienceManage;
     private javax.swing.JMenu guideManage;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu newsletterManage;
     private javax.swing.JMenu rssManage;
     private javax.swing.JMenu statManage;
     private javax.swing.JMenu userManage;
+    private javax.swing.JTable userTableModel;
     // End of variables declaration//GEN-END:variables
 }

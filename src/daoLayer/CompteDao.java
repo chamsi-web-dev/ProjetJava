@@ -8,6 +8,7 @@ package daoLayer;
 import com.esprit.connexion.SingletonConnexion;
 import com.esprit.entites.Compte;
 import interfaces.ICrud;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +26,8 @@ public class CompteDao  implements ICrud<Compte>{
     private static CompteDao instance;
     private Statement compteStatement;
     private ResultSet resultCompte;
-    
+    private Connection connection;
+
     private String username, password;
     
     private CompteDao()
@@ -45,12 +48,12 @@ public class CompteDao  implements ICrud<Compte>{
        
        return instance;
     }
-
     
     @Override
     public boolean insertEntity(Compte compte) {
-        String req = "INSERT INTO `Compte` (`id_compte`, `nom_compte`, `prenom_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) \n" +
-                     "VALUES (, '"+compte.getNom_compte()+"', '"+compte.getPrenom_compte()+"', '"+compte.getDob_compte()+"', '"+compte.getCountry_compte()+"', '"+compte.getLogin_compte()+"', '"+compte.getPwd_compte()+"', '"+compte.getType_compte()+"', '"+compte.getStatus_compte()+", 0);";
+        String req = "INSERT INTO `Compte` (`nom_compte`, `prenom_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) \n" +
+                     "VALUES ('"+compte.getNom_compte()+"', '"+compte.getPrenom_compte()+"', '"+compte.getDob_compte()+"', '"+compte.getCountry_compte()+"', '"+compte.getLogin_compte()+"', '"+compte.getPwd_compte()+"', '"+compte.getType_compte()+"', '"+compte.getStatus_compte()+"');";
+        System.out.println(req);
         try {
             compteStatement.executeUpdate(req);
             return true;
@@ -104,7 +107,7 @@ public class CompteDao  implements ICrud<Compte>{
             resultCompte.next();
             compte.setNom_compte(resultCompte.getString("firstname_compte"));
             compte.setPrenom_compte(resultCompte.getString("lastname_compte"));
-            compte.setDob_compte(resultCompte.getDate("dob_compte"));
+            compte.setDob_compte(resultCompte.getString("dob_compte"));
             compte.setCountry_compte(resultCompte.getInt("country_compte"));
             compte.setLogin_compte(resultCompte.getString("login_compte"));
             compte.setPwd_compte(resultCompte.getString("pwd_compte"));
@@ -118,56 +121,82 @@ public class CompteDao  implements ICrud<Compte>{
         return compte;
     }
     
-    public Compte verifyEntity(String username, String password) {
-        String reqVerify = "SELECT * FROM Compte WHERE login_compte="+username+" and pwd_compte = "+password;
+    public String verifyEntity(String username, String password) {
+        String reqVerify = "SELECT * FROM compte WHERE login_compte='"+username+"' and pwd_compte = '"+password+"'";
         Compte compte = new Compte();
 
         try {
             resultCompte = compteStatement.executeQuery(reqVerify);
-            compte.setNom_compte(resultCompte.getString("firstname_compte"));
-            compte.setPrenom_compte(resultCompte.getString("lastname_compte"));
-            compte.setDob_compte(resultCompte.getDate("dob_compte"));
-            compte.setCountry_compte(resultCompte.getInt("country_compte"));
-            compte.setLogin_compte(resultCompte.getString("login_compte"));
-            compte.setPwd_compte(resultCompte.getString("pwd_compte"));
-            compte.setStatus_compte(resultCompte.getInt("status_compte"));
-            compte.setType_compte(resultCompte.getString("type_compte"));
+                //System.out.println(resultCompte.toString());
+            if( resultCompte.next()){
+                return resultCompte.getString("type_compte");
+            }else{
+                return "";
+            }
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(ExperienceDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return compte;
+        return "";
     }
 
     @Override
     public List<Compte> displayAllEntity() {
-        List<Compte> listCompte = new ArrayList<>();
-        String req = "SELECT * FROM Compte";
-        Compte addCompte = new Compte();
-        
+        String reqVerify = "SELECT * FROM `compte` WHERE `type_compte` = 'Utilisateur'";
+        List<Compte> comptes = new ArrayList<Compte>();
         try {
-            resultCompte = compteStatement.executeQuery(req);
+            resultCompte = compteStatement.executeQuery(reqVerify);
             
             while (resultCompte.next()) {
-                addCompte.setNom_compte(resultCompte.getString("firstname_compte"));
-                addCompte.setPrenom_compte(resultCompte.getString("lastname_compte"));
-                addCompte.setDob_compte(resultCompte.getDate("dob_compte"));
+                Compte addCompte = new Compte();
+                addCompte.setId_compte(resultCompte.getInt("id_compte"));
+                addCompte.setNom_compte(resultCompte.getString("nom_compte"));
+                addCompte.setPrenom_compte(resultCompte.getString("prenom_compte"));
+                addCompte.setDob_compte(resultCompte.getString("dob_compte"));
                 addCompte.setCountry_compte(resultCompte.getInt("country_compte"));
                 addCompte.setLogin_compte(resultCompte.getString("login_compte"));
                 addCompte.setPwd_compte(resultCompte.getString("pwd_compte"));
                 addCompte.setStatus_compte(resultCompte.getInt("status_compte"));
                 addCompte.setType_compte(resultCompte.getString("type_compte"));
-                
-                listCompte.add(addCompte);
+                comptes.add(addCompte);
             }
             
+            return comptes;
+            
         } catch (SQLException ex) {
-            Logger.getLogger(ExperienceDao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "erreur lors du chargement !", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
         
-        return listCompte;
+    }
+    
+    public void disableUser(int id,boolean active) {
+        String req = "Update `compte` "
+                    + "SET `status_compte`= "+active
+                    + " WHERE `id_compte` = "+id;
         
+        JOptionPane jop = new JOptionPane();
+
+        try {
+            compteStatement.executeUpdate(req);
+            jop.showMessageDialog(null, "Le compte est désactivé avec succé", "Sucess", JOptionPane.PLAIN_MESSAGE);        
+        } catch (SQLException ex) {
+            jop.showMessageDialog(null, "erreur lors de la désactivation du compte!", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        /*
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setBoolean(1, active);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            System.out.println("Le compte est désactivé avec succé");
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "erreur lors de la désactivation du compte!", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }*/
     }
 
     

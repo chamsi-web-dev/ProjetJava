@@ -5,8 +5,9 @@
  */
 package view;
 
-import com.esprit.entites.Compte;
 import daoLayer.CompteDao;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,10 +41,11 @@ public class Login extends javax.swing.JFrame {
         userName = new javax.swing.JTextField();
         jNom = new javax.swing.JLabel();
         jPwd = new javax.swing.JLabel();
-        pwd = new javax.swing.JTextField();
         jConnectApplication = new javax.swing.JButton();
         jExit = new javax.swing.JButton();
         jInscription = new javax.swing.JLabel();
+        pwd = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -63,22 +65,22 @@ public class Login extends javax.swing.JFrame {
         jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         userName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameActionPerformed(evt);
             }
         });
+        getContentPane().add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 113, 155, -1));
 
+        jNom.setForeground(new java.awt.Color(255, 255, 255));
         jNom.setText("Nom utlisateur :");
+        getContentPane().add(jNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
+        jPwd.setForeground(new java.awt.Color(255, 255, 255));
         jPwd.setText("Mots de passe");
-
-        pwd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jPwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         jConnectApplication.setText("Connexion");
         jConnectApplication.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +88,7 @@ public class Login extends javax.swing.JFrame {
                 jConnectApplicationActionPerformed(evt);
             }
         });
+        getContentPane().add(jConnectApplication, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
 
         jExit.setText("Exit");
         jExit.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +96,7 @@ public class Login extends javax.swing.JFrame {
                 jExitActionPerformed(evt);
             }
         });
+        getContentPane().add(jExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
         jInscription.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jInscription.setText("Inscription");
@@ -101,49 +105,11 @@ public class Login extends javax.swing.JFrame {
                 jInscriptionMouseClicked(evt);
             }
         });
+        getContentPane().add(jInscription, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+        getContentPane().add(pwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 169, 155, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNom)
-                            .addComponent(jPwd)
-                            .addComponent(jConnectApplication))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jExit)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(userName)
-                                .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(jInscription)))
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNom)
-                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPwd)
-                    .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jConnectApplication)
-                    .addComponent(jExit))
-                .addGap(26, 26, 26)
-                .addComponent(jInscription)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login_background_1366x768_22718.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 540, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,10 +117,6 @@ public class Login extends javax.swing.JFrame {
     private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameActionPerformed
-
-    private void pwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pwdActionPerformed
 
     private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
         // TODO add your handling code here:
@@ -172,19 +134,24 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CompteDao cDAO = CompteDao.getInstance();
-        Compte c = cDAO.verifyEntity(userName.getText(), pwd.getText());
-        if((c.getType_compte()) != "")
+        String resCompte = cDAO.verifyEntity(userName.getText(), pwd.getText());
+        if(resCompte != "")
         {
-            if(c.getType_compte() == "Administrator"){
-                
-            }else if(c.getType_compte() == "Utilisateur"){
+            if(resCompte.equals("Administrateur")){
+                TableauDeBord formBordUser = new TableauDeBord();
+                formBordUser.setVisible(true);
+                this.setVisible(false);
+            }else if(resCompte.equals("Utilisateur")){
                 TableauDeBord formBordUser = new TableauDeBord();
                 formBordUser.setVisible(true);
                 this.setVisible(false);
             }
             
-        }
-        
+        }else{
+            String message = "Utlisateur non trouvé";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Erreur authentification",
+                JOptionPane.ERROR_MESSAGE);
+            }
     }//GEN-LAST:event_jConnectApplicationActionPerformed
 
     /**
@@ -228,6 +195,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jConnectApplication;
     private javax.swing.JButton jExit;
     private javax.swing.JLabel jInscription;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -235,7 +203,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jNom;
     private javax.swing.JLabel jPwd;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JTextField pwd;
+    private javax.swing.JPasswordField pwd;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,29 +6,27 @@
 
 package com.esprit.entites;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 /**
  *
  * @author L E N O V O
  */
 public class Experience {
-  private int  id_experience;
-  private String title_experience;
- private int decalage_horaire_experience;
-  private Date start_experience;
-  private Date end_experience;
-  private String season_experience;
-  private float depense_experience;
-  private int note_experience;
-  private List<Text>text=new ArrayList<Text>();
-  private List<Image>image=new ArrayList<Image>();
-  private List<Video>video=new ArrayList<Video>();
+    private int  id_experience;
+    private String title_experience;
+    private int decalage_horaire_experience;
+    private String start_experience;
+    private String end_experience;
+    private String season_experience;
+    private float depense_experience;
+    private int note_experience;
+    private int id_text;
+    private int id_image;
+    private int id_video;
+    private int status_experience;
+    private int id_compte;
+    private int id_country;
 
-    public Experience(int id_experience, String title_experience, int decalage_horaire_experience, Date start_experience, Date end_experience, String season_experience, float depense_experience, int note_experience) {
+    public Experience(int id_experience, String title_experience, int decalage_horaire_experience, String start_experience, String end_experience, String season_experience, float depense_experience, int note_experience) {
         this.id_experience = id_experience;
         this.title_experience = title_experience;
         this.decalage_horaire_experience = decalage_horaire_experience;
@@ -39,6 +37,9 @@ public class Experience {
         this.note_experience = note_experience;
     }
 
+    public Experience() {
+    }
+    
     public int getId_experience() {
         return id_experience;
     }
@@ -63,19 +64,19 @@ public class Experience {
         this.decalage_horaire_experience = decalage_horaire_experience;
     }
 
-    public Date getStart_experience() {
+    public String getStart_experience() {
         return start_experience;
     }
 
-    public void setStart_experience(Date start_experience) {
+    public void setStart_experience(String start_experience) {
         this.start_experience = start_experience;
     }
 
-    public Date getEnd_experience() {
+    public String getEnd_experience() {
         return end_experience;
     }
 
-    public void setEnd_experience(Date end_experience) {
+    public void setEnd_experience(String end_experience) {
         this.end_experience = end_experience;
     }
 
@@ -103,96 +104,58 @@ public class Experience {
         this.note_experience = note_experience;
     }
 
-    public List<Text> getText() {
-        return text;
+    public int getId_text() {
+        return id_text;
     }
 
-    public void setText(List<Text> text) {
-        this.text = text;
+    public void setId_text(int id_text) {
+        this.id_text = id_text;
     }
 
-    public List<Image> getImage() {
-        return image;
+    public int getId_image() {
+        return id_image;
     }
 
-    public void setImage(List<Image> image) {
-        this.image = image;
+    public void setId_image(int id_image) {
+        this.id_image = id_image;
     }
 
-    public List<Video> getVideo() {
-        return video;
+    public int getId_video() {
+        return id_video;
     }
 
-    public void setVideo(List<Video> video) {
-        this.video = video;
+    public void setId_video(int id_video) {
+        this.id_video = id_video;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id_experience;
-        hash = 97 * hash + Objects.hashCode(this.title_experience);
-        hash = 97 * hash + this.decalage_horaire_experience;
-        hash = 97 * hash + Objects.hashCode(this.start_experience);
-        hash = 97 * hash + Objects.hashCode(this.end_experience);
-        hash = 97 * hash + Objects.hashCode(this.season_experience);
-        hash = 97 * hash + Float.floatToIntBits(this.depense_experience);
-        hash = 97 * hash + this.note_experience;
-        hash = 97 * hash + Objects.hashCode(this.text);
-        hash = 97 * hash + Objects.hashCode(this.image);
-        hash = 97 * hash + Objects.hashCode(this.video);
-        return hash;
+    public int getStatus_experience() {
+        return status_experience;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Experience other = (Experience) obj;
-        if (this.id_experience != other.id_experience) {
-            return false;
-        }
-        if (!Objects.equals(this.title_experience, other.title_experience)) {
-            return false;
-        }
-        if (this.decalage_horaire_experience != other.decalage_horaire_experience) {
-            return false;
-        }
-        if (!Objects.equals(this.start_experience, other.start_experience)) {
-            return false;
-        }
-        if (!Objects.equals(this.end_experience, other.end_experience)) {
-            return false;
-        }
-        if (!Objects.equals(this.season_experience, other.season_experience)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.depense_experience) != Float.floatToIntBits(other.depense_experience)) {
-            return false;
-        }
-        if (this.note_experience != other.note_experience) {
-            return false;
-        }
-        if (!Objects.equals(this.text, other.text)) {
-            return false;
-        }
-        if (!Objects.equals(this.image, other.image)) {
-            return false;
-        }
-        if (!Objects.equals(this.video, other.video)) {
-            return false;
-        }
-        return true;
+    public void setStatus_experience(int status_experience) {
+        this.status_experience = status_experience;
+    }
+
+    public int getId_compte() {
+        return id_compte;
+    }
+
+    public void setId_compte(int id_compte) {
+        this.id_compte = id_compte;
+    }
+
+    public int getId_country() {
+        return id_country;
+    }
+
+    public void setId_country(int id_country) {
+        this.id_country = id_country;
     }
 
     @Override
     public String toString() {
-        return "Experience{" + "id_experience=" + id_experience + ", title_experience=" + title_experience + ", decalage_horaire_experience=" + decalage_horaire_experience + ", start_experience=" + start_experience + ", end_experience=" + end_experience + ", season_experience=" + season_experience + ", depense_experience=" + depense_experience + ", note_experience=" + note_experience + ", text=" + text + ", image=" + image + ", video=" + video + '}';
+        return "Experience{" + "id_experience=" + id_experience + ", title_experience=" + title_experience + ", decalage_horaire_experience=" + decalage_horaire_experience + ", start_experience=" + start_experience + ", end_experience=" + end_experience + ", season_experience=" + season_experience + ", depense_experience=" + depense_experience + ", note_experience=" + note_experience + ", id_text=" + id_text + ", id_image=" + id_image + ", id_video=" + id_video + ", status_experience=" + status_experience + ", id_compte=" + id_compte + ", id_country=" + id_country + '}';
     }
-  
-  
+    
+
 }

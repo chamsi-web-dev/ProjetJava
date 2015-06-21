@@ -19,7 +19,7 @@ public class Compte {
   private int  id_compte;
   private String nom_compte;
   private String prenom_compte;;
-  private Date dob_compte;
+  private String dob_compte;
   private int country_compte;
   private String login_compte;
   private String pwd_compte;
@@ -29,7 +29,7 @@ public class Compte {
   private List<Guide>guide= new ArrayList<Guide>();
   private List<Recommander>recommander=new ArrayList<Recommander>();
 
-    public Compte(int id_compte, String nom_compte, String prenom_compte, Date dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte) {
+    public Compte(int id_compte, String nom_compte, String prenom_compte, String dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte) {
         this.id_compte = id_compte;
         this.nom_compte = nom_compte;
         this.prenom_compte = prenom_compte;
@@ -69,11 +69,11 @@ public class Compte {
         this.prenom_compte = prenom_compte;
     }
 
-    public Date getDob_compte() {
+    public String getDob_compte() {
         return dob_compte;
     }
 
-    public void setDob_compte(Date dob_compte) {
+    public void setDob_compte(String dob_compte) {
         this.dob_compte = dob_compte;
     }
 

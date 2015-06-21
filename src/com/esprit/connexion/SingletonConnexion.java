@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class SingletonConnexion {
     private String url  = "jdbc:mysql://localhost:3306/besttrip_chamsi";
     private String user = "root";
-    private String pwd  = "root";
+    private String pwd  = "";
     
     private Connection connectDB;
     private static SingletonConnexion instance;
