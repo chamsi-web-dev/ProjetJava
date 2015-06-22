@@ -53,7 +53,7 @@ public class CompteDao  implements ICrud<Compte>{
     public boolean insertEntity(Compte compte) {
         String req = "INSERT INTO `Compte` (`nom_compte`, `prenom_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) \n" +
                      "VALUES ('"+compte.getNom_compte()+"', '"+compte.getPrenom_compte()+"', '"+compte.getDob_compte()+"', '"+compte.getCountry_compte()+"', '"+compte.getLogin_compte()+"', '"+compte.getPwd_compte()+"', '"+compte.getType_compte()+"', '"+compte.getStatus_compte()+"');";
-        System.out.println(req);
+
         try {
             compteStatement.executeUpdate(req);
             return true;

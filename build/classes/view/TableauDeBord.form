@@ -24,11 +24,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Experiences"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="experienceManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="statManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Statistiques"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="statManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="rssManage">
           <Properties>

@@ -63,9 +63,19 @@ public class TableauDeBord extends javax.swing.JFrame {
         jMenuBar1.add(guideManage);
 
         experienceManage.setText("Experiences");
+        experienceManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                experienceManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(experienceManage);
 
         statManage.setText("Statistiques");
+        statManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                statManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
@@ -92,6 +102,20 @@ public class TableauDeBord extends javax.swing.JFrame {
             guideManage.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_guideManageMouseClicked
+
+    private void experienceManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_experienceManageMouseClicked
+        // TODO add your handling code here:
+            GestionExperience experienceManage = new GestionExperience();
+            experienceManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_experienceManageMouseClicked
+
+    private void statManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statManageMouseClicked
+        // TODO add your handling code here:
+            GestionStat statManage = new GestionStat();
+            statManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_statManageMouseClicked
 
     /**
      * @param args the command line arguments

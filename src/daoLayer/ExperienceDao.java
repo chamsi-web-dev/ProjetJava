@@ -130,7 +130,7 @@ public class ExperienceDao implements ICrud<Experience>{
     @Override
     public List<Experience> displayAllEntity() {
         List<Experience> listExperience = new ArrayList<>();
-        String req = "SELECT * FROM experience";
+        String req = "SELECT * FROM experience Group BY status_experience";
         Experience addExp = new Experience();
         
         try {
@@ -199,6 +199,71 @@ public class ExperienceDao implements ICrud<Experience>{
             return null;
         }
         
+    }
+    
+    
+    public String getTextById(int id){
+        String req = "SELECT description_experience FROM text WHERE id_text="+id;
+
+        try {
+            resultSet = experienceStatement.executeQuery(req);
+            resultSet.next();
+            
+            return resultSet.getString("description_experience");
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+    
+    public String getVideoById(int id){
+        String req = "SELECT path_video FROM video WHERE id_video="+id;
+
+        try {
+            resultSet = experienceStatement.executeQuery(req);
+            resultSet.next();
+            
+            return resultSet.getString("path_video");
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+    
+    public String getCompteById(int id){
+        String req = "SELECT nom_compte, prenom_compte FROM compte WHERE id_compte="+id;
+
+        try {
+            resultSet = experienceStatement.executeQuery(req);
+            resultSet.next();
+            String nomPrenom = resultSet.getString("nom_compte")+" "+resultSet.getString("prenom_compte");
+            return nomPrenom;
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+    
+    public String getImageById(int id){
+        String req = "SELECT path_url_image FROM image WHERE id_image = "+id;
+
+        try {
+            resultSet = experienceStatement.executeQuery(req);
+            resultSet.next();
+
+            return resultSet.getString("path_url_image");
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
     
 }

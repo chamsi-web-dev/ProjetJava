@@ -6,10 +6,7 @@
 package view;
 
 import com.esprit.entites.Experience;
-import com.esprit.entites.Guide;
 import daoLayer.ExperienceDao;
-import daoLayer.ExperienceDao;
-import daoLayer.GuideDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import tables.ExperienceAdapter;
@@ -20,7 +17,21 @@ import tables.GuideAdapter;
  * @author mac
  */
 public class GestionExperience extends javax.swing.JFrame {
-
+    public static int idExperience;
+    public static String titleExperience;
+    public static int decalage_horaire_experience;
+    public static String start_experience;
+    public static String end_experience;
+    public static String season_experience;
+    public static float depense_experience;
+    public static int note_experience;
+    public static String text_experience;
+    public static String video_experience;
+    public static String image_experience;
+    public static String compte_experience;
+    public static String country_experience;
+    public static int status_experience;
+    public static Experience expStatic;
     /**
      * Creates new form TableauDeBord
      */
@@ -186,7 +197,44 @@ public class GestionExperience extends javax.swing.JFrame {
 
     private void displayExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayExperienceActionPerformed
         // TODO add your handling code here:
-        
+         if(experiencesTableModel.getSelectedRow() != -1){
+            ExperienceDao experienceDao               = ExperienceDao.getInstance();
+            ExperienceAdapter experiencesAdapter  = new ExperienceAdapter();
+            List<Experience> listExperience       = experiencesAdapter.getExperiences();
+            Experience tmpExperience              = listExperience.get(experiencesTableModel.getSelectedRow());
+            
+            //Get description text
+                String description_experience   = experienceDao.getTextById(tmpExperience.getId_text());
+            //Get country by id 
+                String countryExperience       = experienceDao.getCountryById(tmpExperience.getId_country());
+            //Get Video by id 
+                String videoExperience         = experienceDao.getVideoById(tmpExperience.getId_video());
+            //Get Image by id 
+                String imgExperience         = experienceDao.getImageById(tmpExperience.getId_video());
+            //Get Compte by id 
+                String compteExperience         = experienceDao.getCompteById(tmpExperience.getId_compte());
+                
+            //Static variable to another Jframe window
+                expStatic                   = tmpExperience;
+                idExperience                = tmpExperience.getId_experience();
+                titleExperience             = tmpExperience.getTitle_experience();
+                decalage_horaire_experience = tmpExperience.getDecalage_horaire_experience();
+                start_experience            = tmpExperience.getStart_experience();
+                end_experience              = tmpExperience.getEnd_experience();
+                season_experience           = tmpExperience.getSeason_experience();
+                depense_experience          = tmpExperience.getDepense_experience();
+                note_experience             = tmpExperience.getNote_experience();
+                text_experience             = description_experience;
+                video_experience            = videoExperience;
+                image_experience            = imgExperience;
+                compte_experience           = compteExperience;
+                country_experience          = countryExperience;
+                status_experience           = tmpExperience.getStatus_experience();
+
+            ConsulterExperience voirExperience    =  new ConsulterExperience();
+            voirExperience.setVisible(true);
+            this.setVisible(false);
+         }
     }//GEN-LAST:event_displayExperienceActionPerformed
 
     /**
@@ -194,6 +242,7 @@ public class GestionExperience extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

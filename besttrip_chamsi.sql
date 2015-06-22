@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 21 Juin 2015 à 03:37
+-- Généré le :  Lun 22 Juin 2015 à 03:02
 -- Version du serveur :  5.6.24
 -- Version de PHP :  5.6.8
 
@@ -42,21 +42,23 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `id_compte` int(20) NOT NULL,
   `nom_compte` varchar(45) DEFAULT NULL,
   `prenom_compte` varchar(45) DEFAULT NULL,
+  `email_compte` varchar(50) NOT NULL,
   `dob_compte` date DEFAULT NULL,
   `country_compte` int(3) DEFAULT NULL,
   `login_compte` varchar(20) DEFAULT NULL,
   `pwd_compte` varchar(20) DEFAULT NULL,
   `type_compte` varchar(20) DEFAULT NULL,
   `status_compte` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `compte`
 --
 
-INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) VALUES
-(1, 'chamsi', 'bardi', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 1),
-(2, 'qdqsdsq', 'sdqsdsq', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1);
+INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) VALUES
+(1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 0),
+(2, 'qdqsdsq', 'sdqsdsq', '', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1),
+(3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 2);
 
 -- --------------------------------------------------------
 
@@ -103,14 +105,16 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `id_compte` int(20) NOT NULL,
   `id_country` int(11) NOT NULL,
   `status_experience` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `experience`
 --
 
 INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire_experience`, `start_experience`, `end_experience`, `season_experience`, `depense_experience`, `note_experience`, `id_text`, `id_video`, `id_image`, `id_compte`, `id_country`, `status_experience`) VALUES
-(4, 'Experience 1', 3, '2015-06-01', '2015-06-30', 3, 25, 5, 1, 1, 1, 1, 2, 1);
+(5, 'Experience 1', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
+(6, 'Experience 2', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
+(7, 'Experience 3', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,17 @@ CREATE TABLE IF NOT EXISTS `guide` (
   `status_guide` int(2) DEFAULT NULL,
   `id_country` int(11) NOT NULL,
   `id_compte` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `guide`
+--
+
+INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`, `status_guide`, `id_country`, `id_compte`) VALUES
+(1, 'Guide 1', 'TEST DESCRIPTION GUIDE 1', '5', 0, 1, 2),
+(2, 'Guide 2', 'TEST DESCRIPTION GUIDE 2', '6', 1, 2, 2),
+(3, 'Guide 3', 'TEST DESCRIPTION GUIDE 3', '5', 0, 3, 2),
+(4, 'Guide 4', 'TEST DESCRIPTION GUIDE 4', '4', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -308,17 +322,17 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
-  MODIFY `id_compte` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_compte` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Contraintes pour les tables exportées
 --
