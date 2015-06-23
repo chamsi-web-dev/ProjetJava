@@ -112,10 +112,10 @@ public class GestionExperience extends javax.swing.JFrame {
         experiencesTableModel.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(experiencesTableModel);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 980, 420));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 980, 420));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 1150, 560));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 520));
         getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 270, 340));
 
         userManage.setText("Utilisateurs");
@@ -127,18 +127,43 @@ public class GestionExperience extends javax.swing.JFrame {
         jMenuBar1.add(userManage);
 
         guideManage.setText("Guides");
+        guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guideManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(guideManage);
 
         experienceManage.setText("Experiences");
+        experienceManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                experienceManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(experienceManage);
 
         statManage.setText("Statistiques");
+        statManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                statManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
+        rssManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rssManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(rssManage);
 
         newsletterManage.setText("Newsletter");
+        newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newsletterManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(newsletterManage);
 
         setJMenuBar(jMenuBar1);
@@ -148,6 +173,9 @@ public class GestionExperience extends javax.swing.JFrame {
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
+            GestionUtilisateur userManage = new GestionUtilisateur();
+            userManage.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_userManageMouseClicked
 
     private void btnEnableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableUserActionPerformed
@@ -236,6 +264,41 @@ public class GestionExperience extends javax.swing.JFrame {
             this.setVisible(false);
          }
     }//GEN-LAST:event_displayExperienceActionPerformed
+
+    private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
+        // TODO add your handling code here:
+            GestionGuide guideManage = new GestionGuide();
+            guideManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_guideManageMouseClicked
+
+    private void experienceManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_experienceManageMouseClicked
+        // TODO add your handling code here:
+            GestionExperience experienceManage = new GestionExperience();
+            experienceManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_experienceManageMouseClicked
+
+    private void statManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statManageMouseClicked
+        // TODO add your handling code here:
+            GestionStat statManage = new GestionStat();
+            statManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_statManageMouseClicked
+
+    private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked
+        // TODO add your handling code here:
+            GestionFlux rssManage = new GestionFlux();
+            rssManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_rssManageMouseClicked
+
+    private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
+        // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMouseClicked
 
     /**
      * @param args the command line arguments

@@ -59,6 +59,8 @@ public class Inscription extends javax.swing.JFrame {
         dobCompte = new com.toedter.calendar.JDateChooser();
         countryCompte = new javax.swing.JComboBox();
         precedent = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        emailCompte = new javax.swing.JTextField();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -127,6 +129,8 @@ public class Inscription extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Email");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,12 +143,14 @@ public class Inscription extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nomCompte)
                             .addComponent(usernameCompte, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(dobCompte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(dobCompte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailCompte))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
@@ -153,15 +159,15 @@ public class Inscription extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel6))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(pwdCompte))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(prenomCompte, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(countryCompte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(countryCompte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pwdCompte, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(precedent)))
@@ -183,13 +189,17 @@ public class Inscription extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addComponent(countryCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(dobCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(emailCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(usernameCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(pwdCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inscriptionUser)
                     .addComponent(precedent))
@@ -213,7 +223,7 @@ public class Inscription extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
@@ -225,32 +235,40 @@ public class Inscription extends javax.swing.JFrame {
 
     private void inscriptionUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscriptionUserActionPerformed
         // TODO add your handling code here:
-        CompteDao cDao = CompteDao.getInstance();
-        Compte compte = new Compte();
-        
-        compte.setNom_compte(nomCompte.getText());
-        compte.setPrenom_compte(prenomCompte.getText());
-        
         //Formatage de date
             Date dateFromDateChooser = dobCompte.getDate();
             String dateString = String.format("%1$tY-%1$tm-%1$td", dateFromDateChooser);
-        
-        compte.setDob_compte(dateString);
-        compte.setCountry_compte(countryCompte.getSelectedIndex());
-        compte.setLogin_compte(usernameCompte.getText());
-        compte.setPwd_compte(pwdCompte.getText());
-        compte.setStatus_compte(1);
-        compte.setType_compte("Utilisateur");
-        
-        if(cDao.insertEntity(compte))
+            System.out.println(dateString);
+        if(nomCompte.getText().equals("") || prenomCompte.getText().equals("") || dateString.equals("null-null-null")|| countryCompte.getSelectedItem() == "" || emailCompte.getText().equals("") || usernameCompte.getText().equals("") || pwdCompte.getText().equals(""))
         {
-            String message = "Inscription avec succé.";
+            String message = "Remplir tous les champs .";
             JOptionPane.showMessageDialog(new JFrame(), message, "Inscription",
-                JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
             
-            Login loginForm = new Login();
-            loginForm.setVisible(true);
-            this.setVisible(false);
+        }else{
+            CompteDao cDao = CompteDao.getInstance();
+            Compte compte = new Compte();
+
+            compte.setNom_compte(nomCompte.getText());
+            compte.setPrenom_compte(prenomCompte.getText());
+
+            compte.setDob_compte(dateString);
+            compte.setCountry_compte(countryCompte.getSelectedIndex());
+            compte.setLogin_compte(usernameCompte.getText());
+            compte.setPwd_compte(pwdCompte.getText());
+            compte.setStatus_compte(1);
+            compte.setType_compte("Utilisateur");
+
+            if(cDao.insertEntity(compte))
+            {
+                String message = "Inscription avec succé.";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Inscription",
+                    JOptionPane.PLAIN_MESSAGE);
+
+                Login loginForm = new Login();
+                loginForm.setVisible(true);
+                this.setVisible(false);
+            }
         }
         
     }//GEN-LAST:event_inscriptionUserActionPerformed
@@ -300,6 +318,7 @@ public class Inscription extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox countryCompte;
     private com.toedter.calendar.JDateChooser dobCompte;
+    private javax.swing.JTextField emailCompte;
     private javax.swing.JButton inscriptionUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,6 +326,7 @@ public class Inscription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;

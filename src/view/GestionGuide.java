@@ -95,18 +95,43 @@ public class GestionGuide extends javax.swing.JFrame {
         jMenuBar1.add(userManage);
 
         guideManage.setText("Guides");
+        guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guideManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(guideManage);
 
         experienceManage.setText("Experiences");
+        experienceManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                experienceManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(experienceManage);
 
         statManage.setText("Statistiques");
+        statManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                statManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
+        rssManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rssManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(rssManage);
 
         newsletterManage.setText("Newsletter");
+        newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newsletterManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(newsletterManage);
 
         setJMenuBar(jMenuBar1);
@@ -116,6 +141,9 @@ public class GestionGuide extends javax.swing.JFrame {
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
+            GestionUtilisateur userManage = new GestionUtilisateur();
+            userManage.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_userManageMouseClicked
 
     private void btnEnableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableUserActionPerformed
@@ -161,6 +189,41 @@ public class GestionGuide extends javax.swing.JFrame {
                guidesTableModel.setModel(new GuideAdapter());
             }
     }//GEN-LAST:event_deleteGuideActionPerformed
+
+    private void experienceManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_experienceManageMouseClicked
+        // TODO add your handling code here:
+            GestionExperience experienceManage = new GestionExperience();
+            experienceManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_experienceManageMouseClicked
+
+    private void statManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statManageMouseClicked
+        // TODO add your handling code here:
+            GestionStat statManage = new GestionStat();
+            statManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_statManageMouseClicked
+
+    private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked
+        // TODO add your handling code here:
+            GestionFlux rssManage = new GestionFlux();
+            rssManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_rssManageMouseClicked
+
+    private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
+        // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMouseClicked
+
+    private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
+        // TODO add your handling code here:
+            GestionGuide guideManage = new GestionGuide();
+            guideManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_guideManageMouseClicked
 
     /**
      * @param args the command line arguments

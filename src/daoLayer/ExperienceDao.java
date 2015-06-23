@@ -131,12 +131,12 @@ public class ExperienceDao implements ICrud<Experience>{
     public List<Experience> displayAllEntity() {
         List<Experience> listExperience = new ArrayList<>();
         String req = "SELECT * FROM experience Group BY status_experience";
-        Experience addExp = new Experience();
         
         try {
             resultSet = experienceStatement.executeQuery(req);
             
             while (resultSet.next()) {
+                Experience addExp = new Experience();
                 addExp.setId_experience(resultSet.getInt("id_experience"));
                 addExp.setTitle_experience(resultSet.getString("title_experience"));
                 addExp.setDecalage_horaire_experience(resultSet.getInt("decalage_horaire_experience"));

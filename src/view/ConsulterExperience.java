@@ -78,39 +78,38 @@ public class ConsulterExperience extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jNom = new javax.swing.JLabel();
-        title_experience = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        decalage_horaire = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        start_experience = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        end_experience = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        season_experience = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        depense_experience = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        note_experience = new javax.swing.JTextField();
-        sur_dix = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        image_exp = new javax.swing.JTextField();
+        returnExperience = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         texte_exp = new javax.swing.JTextArea();
+        title_experience = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        video_experience = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        image_exp = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        compte_experience = new javax.swing.JTextField();
-        deleteExperience = new javax.swing.JToggleButton();
-        btnEnableUser = new javax.swing.JButton();
-        btnDisableUser = new javax.swing.JButton();
-        returnExperience = new javax.swing.JButton();
-        country_exp = new javax.swing.JTextField();
-        pays = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        depense_experience = new javax.swing.JTextField();
         statusExperience = new javax.swing.JTextField();
+        btnDisableUser = new javax.swing.JButton();
+        video_experience = new javax.swing.JTextField();
+        end_experience = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        pays = new javax.swing.JLabel();
+        deleteExperience = new javax.swing.JToggleButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnEnableUser = new javax.swing.JButton();
+        compte_experience = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        country_exp = new javax.swing.JTextField();
+        jNom = new javax.swing.JLabel();
+        start_experience = new javax.swing.JTextField();
+        season_experience = new javax.swing.JTextField();
+        decalage_horaire = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        sur_dix = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        note_experience = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         userManage = new javax.swing.JMenu();
@@ -128,117 +127,7 @@ public class ConsulterExperience extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(null);
-
-        jNom.setText("Titre : ");
-        jPanel1.add(jNom);
-        jNom.setBounds(90, 30, 40, 20);
-
-        title_experience.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                title_experienceActionPerformed(evt);
-            }
-        });
-        jPanel1.add(title_experience);
-        title_experience.setBounds(190, 30, 180, 30);
-
-        jLabel2.setText("Décalage horaire :");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(400, 30, 100, 14);
-        jPanel1.add(decalage_horaire);
-        decalage_horaire.setBounds(500, 30, 180, 30);
-
-        jLabel3.setText("Date de début :");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(90, 70, 90, 14);
-        jPanel1.add(start_experience);
-        start_experience.setBounds(190, 70, 180, 30);
-
-        jLabel4.setText("Date de fin :");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(400, 70, 70, 14);
-        jPanel1.add(end_experience);
-        end_experience.setBounds(500, 70, 180, 30);
-
-        jLabel5.setText("Saison : ");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(90, 110, 60, 20);
-        jPanel1.add(season_experience);
-        season_experience.setBounds(190, 110, 180, 30);
-
-        jLabel6.setText("Dépense :");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(400, 110, 60, 14);
-        jPanel1.add(depense_experience);
-        depense_experience.setBounds(500, 110, 180, 30);
-
-        jLabel7.setText("Note : ");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(90, 160, 33, 14);
-        jPanel1.add(note_experience);
-        note_experience.setBounds(190, 160, 150, 30);
-
-        sur_dix.setText("/10");
-        jPanel1.add(sur_dix);
-        sur_dix.setBounds(350, 160, 34, 20);
-
-        jLabel9.setText("Description : ");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(400, 160, 70, 14);
-
-        texte_exp.setColumns(20);
-        texte_exp.setRows(5);
-        jScrollPane1.setViewportView(texte_exp);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(500, 160, 180, 96);
-
-        jLabel10.setText("Vidéo :");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(90, 220, 33, 14);
-        jPanel1.add(video_experience);
-        video_experience.setBounds(190, 220, 180, 30);
-
-        jLabel11.setText("Image :");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(90, 270, 37, 14);
-        jPanel1.add(image_exp);
-        image_exp.setBounds(190, 270, 180, 30);
-
-        jLabel12.setText("Propriétaire :");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(410, 270, 70, 20);
-        jPanel1.add(compte_experience);
-        compte_experience.setBounds(500, 270, 180, 30);
-
-        deleteExperience.setText("Supprimer");
-        deleteExperience.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteExperienceActionPerformed(evt);
-            }
-        });
-        jPanel1.add(deleteExperience);
-        deleteExperience.setBounds(480, 350, 105, 23);
-
-        btnEnableUser.setText("Activé");
-        btnEnableUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnableUserActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEnableUser);
-        btnEnableUser.setBounds(190, 350, 80, 23);
-
-        btnDisableUser.setText("Désactivé");
-        btnDisableUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisableUserActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnDisableUser);
-        btnDisableUser.setBounds(280, 350, 79, 23);
+        getContentPane().add(image_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 180, 30));
 
         returnExperience.setText("<< précédent");
         returnExperience.addActionListener(new java.awt.event.ActionListener() {
@@ -246,25 +135,99 @@ public class ConsulterExperience extends javax.swing.JFrame {
                 returnExperienceActionPerformed(evt);
             }
         });
-        jPanel1.add(returnExperience);
-        returnExperience.setBounds(370, 350, 101, 23);
-        jPanel1.add(country_exp);
-        country_exp.setBounds(190, 310, 180, 30);
+        getContentPane().add(returnExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
+
+        texte_exp.setColumns(20);
+        texte_exp.setRows(5);
+        jScrollPane1.setViewportView(texte_exp);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 180, -1));
+
+        title_experience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                title_experienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(title_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 180, 30));
+
+        jLabel10.setText("Vidéo :");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
+
+        jLabel2.setText("Décalage horaire :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, -1));
+        getContentPane().add(depense_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 180, 30));
+        getContentPane().add(statusExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 180, 30));
+
+        btnDisableUser.setText("Désactivé");
+        btnDisableUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisableUserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDisableUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
+        getContentPane().add(video_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 180, 30));
+        getContentPane().add(end_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 180, 30));
+
+        jLabel4.setText("Date de fin :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 70, -1));
 
         pays.setText("Pays : ");
-        jPanel1.add(pays);
-        pays.setBounds(90, 314, 40, 20);
+        getContentPane().add(pays, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 40, 20));
+
+        deleteExperience.setText("Supprimer");
+        deleteExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteExperienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 105, -1));
+
+        jLabel11.setText("Image :");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
+
+        jLabel7.setText("Note : ");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        btnEnableUser.setText("Activé");
+        btnEnableUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnableUserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnableUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 80, -1));
+        getContentPane().add(compte_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, 180, 30));
+
+        jLabel5.setText("Saison : ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 60, 20));
+        getContentPane().add(country_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 180, 30));
+
+        jNom.setText("Titre : ");
+        getContentPane().add(jNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 40, 20));
+        getContentPane().add(start_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 180, 30));
+        getContentPane().add(season_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 180, 30));
+        getContentPane().add(decalage_horaire, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 180, 30));
+
+        jLabel6.setText("Dépense :");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 60, -1));
+
+        sur_dix.setText("/10");
+        getContentPane().add(sur_dix, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 34, 20));
+
+        jLabel3.setText("Date de début :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 90, -1));
+        getContentPane().add(note_experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 150, 30));
+
+        jLabel9.setText("Description : ");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 70, -1));
+
+        jLabel12.setText("Propriétaire :");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 70, 20));
 
         jLabel13.setText("Status :");
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(410, 320, 38, 14);
-        jPanel1.add(statusExperience);
-        statusExperience.setBounds(500, 310, 180, 30);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 830, 390));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 1150, 620));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 540));
 
         userManage.setText("Utilisateurs");
         userManage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -275,18 +238,43 @@ public class ConsulterExperience extends javax.swing.JFrame {
         jMenuBar1.add(userManage);
 
         guideManage.setText("Guides");
+        guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guideManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(guideManage);
 
         experienceManage.setText("Experiences");
+        experienceManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                experienceManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(experienceManage);
 
         statManage.setText("Statistiques");
+        statManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                statManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
+        rssManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rssManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(rssManage);
 
         newsletterManage.setText("Newsletter");
+        newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newsletterManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(newsletterManage);
 
         setJMenuBar(jMenuBar1);
@@ -296,6 +284,9 @@ public class ConsulterExperience extends javax.swing.JFrame {
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
+            GestionUtilisateur userManage = new GestionUtilisateur();
+            userManage.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_userManageMouseClicked
 
     private void btnEnableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableUserActionPerformed
@@ -335,6 +326,41 @@ public class ConsulterExperience extends javax.swing.JFrame {
             this.returnExperienceForm();
 
     }//GEN-LAST:event_deleteExperienceActionPerformed
+
+    private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
+        // TODO add your handling code here:
+            GestionGuide guideManage = new GestionGuide();
+            guideManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_guideManageMouseClicked
+
+    private void experienceManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_experienceManageMouseClicked
+        // TODO add your handling code here:
+            GestionExperience experienceManage = new GestionExperience();
+            experienceManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_experienceManageMouseClicked
+
+    private void statManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statManageMouseClicked
+        // TODO add your handling code here:
+            GestionStat statManage = new GestionStat();
+            statManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_statManageMouseClicked
+
+    private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked
+        // TODO add your handling code here:
+            GestionFlux rssManage = new GestionFlux();
+            rssManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_rssManageMouseClicked
+
+    private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
+        // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMouseClicked
     
     public void returnExperienceForm(){
         GestionExperience expForm = new GestionExperience();
@@ -418,7 +444,6 @@ public class ConsulterExperience extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel jNom;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;

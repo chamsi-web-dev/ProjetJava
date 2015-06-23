@@ -31,26 +31,41 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guides"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guideManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="experienceManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Experiences"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="experienceManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="statManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Statistiques"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="statManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="rssManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Flux Rss"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rssManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="newsletterManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Newsletter"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newsletterManageMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -138,7 +153,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="100" width="980" height="420"/>
+          <AbsoluteConstraints x="10" y="90" width="980" height="420"/>
         </Constraint>
       </Constraints>
 
@@ -176,7 +191,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="-40" width="1150" height="560"/>
+          <AbsoluteConstraints x="0" y="0" width="1010" height="520"/>
         </Constraint>
       </Constraints>
     </Component>

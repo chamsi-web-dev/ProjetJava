@@ -40,11 +40,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Flux Rss"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rssManageMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="newsletterManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Newsletter"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newsletterManageMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

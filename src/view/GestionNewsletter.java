@@ -140,9 +140,19 @@ public class GestionNewsletter extends javax.swing.JFrame {
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
+        rssManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rssManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(rssManage);
 
         newsletterManage.setText("Newsletter");
+        newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newsletterManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(newsletterManage);
 
         setJMenuBar(jMenuBar1);
@@ -260,6 +270,20 @@ public class GestionNewsletter extends javax.swing.JFrame {
             }
         }}
     }//GEN-LAST:event_sendNewsletterActionPerformed
+
+    private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked
+        // TODO add your handling code here:
+            GestionFlux rssManage = new GestionFlux();
+            rssManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_rssManageMouseClicked
+
+    private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
+        // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMouseClicked
 
     /**
      * @param args the command line arguments

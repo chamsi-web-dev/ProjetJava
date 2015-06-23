@@ -43,7 +43,6 @@ public class GestionStat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        statContent = new javax.swing.JPanel();
         experience = new javax.swing.JRadioButton();
         guide = new javax.swing.JRadioButton();
         user = new javax.swing.JRadioButton();
@@ -60,9 +59,6 @@ public class GestionStat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        statContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        statContent.setLayout(null);
-
         experience.setText("Par Expérience");
         experience.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -74,8 +70,7 @@ public class GestionStat extends javax.swing.JFrame {
                 experienceActionPerformed(evt);
             }
         });
-        statContent.add(experience);
-        experience.setBounds(270, 40, 140, 23);
+        getContentPane().add(experience, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 140, -1));
 
         guide.setText("Par Guides");
         guide.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,8 +83,7 @@ public class GestionStat extends javax.swing.JFrame {
                 guideActionPerformed(evt);
             }
         });
-        statContent.add(guide);
-        guide.setBounds(410, 40, 110, 23);
+        getContentPane().add(guide, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 110, -1));
 
         user.setText("Par Utilisateur");
         user.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,15 +91,11 @@ public class GestionStat extends javax.swing.JFrame {
                 userMouseClicked(evt);
             }
         });
-        statContent.add(user);
-        user.setBounds(520, 40, 100, 23);
-        statContent.add(panelStatistique);
-        panelStatistique.setBounds(50, 140, 790, 430);
-
-        getContentPane().add(statContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 900, 590));
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 100, -1));
+        getContentPane().add(panelStatistique, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 790, 430));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-26, 4, 1090, 720));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 720));
 
         userManage.setText("Utilisateurs");
         userManage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,9 +130,19 @@ public class GestionStat extends javax.swing.JFrame {
         jMenuBar1.add(statManage);
 
         rssManage.setText("Flux Rss");
+        rssManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rssManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(rssManage);
 
         newsletterManage.setText("Newsletter");
+        newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newsletterManageMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(newsletterManage);
 
         setJMenuBar(jMenuBar1);
@@ -343,6 +343,20 @@ public class GestionStat extends javax.swing.JFrame {
                     panelStatistique.validate();
     }//GEN-LAST:event_userMouseClicked
 
+    private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
+        // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMouseClicked
+
+    private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked
+        // TODO add your handling code here:
+            GestionFlux rssManage = new GestionFlux();
+            rssManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_rssManageMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -389,7 +403,6 @@ public class GestionStat extends javax.swing.JFrame {
     private javax.swing.JMenu newsletterManage;
     private javax.swing.JPanel panelStatistique;
     private javax.swing.JMenu rssManage;
-    private javax.swing.JPanel statContent;
     private javax.swing.JMenu statManage;
     private javax.swing.JRadioButton user;
     private javax.swing.JMenu userManage;

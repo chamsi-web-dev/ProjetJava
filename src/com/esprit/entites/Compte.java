@@ -17,7 +17,8 @@ import java.util.Objects;
 public class Compte {
   private int  id_compte;
   private String nom_compte;
-  private String prenom_compte;;
+  private String prenom_compte;
+  private String email_compte;
   private String dob_compte;
   private int country_compte;
   private String login_compte;
@@ -28,10 +29,11 @@ public class Compte {
   private List<Guide>guide= new ArrayList<Guide>();
   private List<Recommander>recommander=new ArrayList<Recommander>();
 
-    public Compte(int id_compte, String nom_compte, String prenom_compte, String dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte) {
+    public Compte(int id_compte, String nom_compte, String prenom_compte, String email_compte, String dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte) {
         this.id_compte = id_compte;
         this.nom_compte = nom_compte;
         this.prenom_compte = prenom_compte;
+        this.email_compte = email_compte;
         this.dob_compte = dob_compte;
         this.country_compte = country_compte;
         this.login_compte = login_compte;
@@ -39,6 +41,7 @@ public class Compte {
         this.type_compte = type_compte;
         this.status_compte = status_compte;
     }
+
 
     public Compte() {
     }
@@ -140,76 +143,17 @@ public class Compte {
         this.recommander = recommander;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.id_compte;
-        hash = 79 * hash + Objects.hashCode(this.nom_compte);
-        hash = 79 * hash + Objects.hashCode(this.prenom_compte);
-        hash = 79 * hash + Objects.hashCode(this.dob_compte);
-        hash = 79 * hash + this.country_compte;
-        hash = 79 * hash + Objects.hashCode(this.login_compte);
-        hash = 79 * hash + Objects.hashCode(this.pwd_compte);
-        hash = 79 * hash + Objects.hashCode(this.type_compte);
-        hash = 79 * hash + this.status_compte;
-        hash = 79 * hash + Objects.hashCode(this.experience);
-        hash = 79 * hash + Objects.hashCode(this.guide);
-        hash = 79 * hash + Objects.hashCode(this.recommander);
-        return hash;
+    public String getEmail_compte() {
+        return email_compte;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Compte other = (Compte) obj;
-        if (this.id_compte != other.id_compte) {
-            return false;
-        }
-        if (!Objects.equals(this.nom_compte, other.nom_compte)) {
-            return false;
-        }
-        if (!Objects.equals(this.prenom_compte, other.prenom_compte)) {
-            return false;
-        }
-        if (!Objects.equals(this.dob_compte, other.dob_compte)) {
-            return false;
-        }
-        if (this.country_compte != other.country_compte) {
-            return false;
-        }
-        if (!Objects.equals(this.login_compte, other.login_compte)) {
-            return false;
-        }
-        if (!Objects.equals(this.pwd_compte, other.pwd_compte)) {
-            return false;
-        }
-        if (!Objects.equals(this.type_compte, other.type_compte)) {
-            return false;
-        }
-        if (this.status_compte != other.status_compte) {
-            return false;
-        }
-        if (!Objects.equals(this.experience, other.experience)) {
-            return false;
-        }
-        if (!Objects.equals(this.guide, other.guide)) {
-            return false;
-        }
-        if (!Objects.equals(this.recommander, other.recommander)) {
-            return false;
-        }
-        return true;
+    public void setEmail_compte(String email_compte) {
+        this.email_compte = email_compte;
     }
 
     @Override
     public String toString() {
-        return "Compte{" + "id_compte=" + id_compte + ", nom_compte=" + nom_compte + ", prenom_compte=" + prenom_compte + ", dob_compte=" + dob_compte + ", country_compte=" + country_compte + ", login_compte=" + login_compte + ", pwd_compte=" + pwd_compte + ", type_compte=" + type_compte + ", status_compte=" + status_compte + ", experience=" + experience + ", guide=" + guide + ", recommander=" + recommander + '}';
+        return "Compte{" + "id_compte=" + id_compte + ", nom_compte=" + nom_compte + ", prenom_compte=" + prenom_compte + ", email_compte=" + email_compte + ", dob_compte=" + dob_compte + ", country_compte=" + country_compte + ", login_compte=" + login_compte + ", pwd_compte=" + pwd_compte + ", type_compte=" + type_compte + ", status_compte=" + status_compte + ", experience=" + experience + ", guide=" + guide + ", recommander=" + recommander + '}';
     }
-    
-  
+
 }

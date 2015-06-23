@@ -98,14 +98,15 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
-        jInscription.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jInscription.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jInscription.setForeground(new java.awt.Color(255, 255, 255));
         jInscription.setText("Inscription");
         jInscription.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jInscriptionMouseClicked(evt);
             }
         });
-        getContentPane().add(jInscription, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+        getContentPane().add(jInscription, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
         getContentPane().add(pwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 169, 155, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login_background_1366x768_22718.jpg"))); // NOI18N
@@ -142,9 +143,9 @@ public class Login extends javax.swing.JFrame {
                 formBordUser.setVisible(true);
                 this.setVisible(false);
             }else if(resCompte.equals("Utilisateur")){
-                TableauDeBord formBordUser = new TableauDeBord();
-                formBordUser.setVisible(true);
-                this.setVisible(false);
+                String message = "Partie utilisateur est en cours de construction";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Erreur authentification",
+                    JOptionPane.INFORMATION_MESSAGE);
             }
             
         }else{

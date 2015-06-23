@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 22 Juin 2015 à 03:02
+-- Généré le :  Mar 23 Juin 2015 à 01:16
 -- Version du serveur :  5.6.24
 -- Version de PHP :  5.6.8
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `pwd_compte` varchar(20) DEFAULT NULL,
   `type_compte` varchar(20) DEFAULT NULL,
   `status_compte` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `compte`
@@ -58,7 +58,8 @@ CREATE TABLE IF NOT EXISTS `compte` (
 INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) VALUES
 (1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 0),
 (2, 'qdqsdsq', 'sdqsdsq', '', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1),
-(3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 2);
+(3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 2),
+(4, 'sqdqsd', 'qsdqsd', 'null', '2015-06-23', 1, 'qsdqs', 'dqsdqsd', 'Utilisateur', 1);
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,28 @@ INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire
 (5, 'Experience 1', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
 (6, 'Experience 2', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
 (7, 'Experience 3', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `flux`
+--
+
+CREATE TABLE IF NOT EXISTS `flux` (
+  `id_flux` int(20) NOT NULL,
+  `lien_flux` varchar(20) NOT NULL,
+  `status_flux` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `flux`
+--
+
+INSERT INTO `flux` (`id_flux`, `lien_flux`, `status_flux`) VALUES
+(1, 'flux1', 0),
+(2, 'flux2', 1),
+(5, 'flux 5', 0),
+(6, 'flux 6', 1);
 
 -- --------------------------------------------------------
 
@@ -273,6 +296,12 @@ ALTER TABLE `experience`
   ADD PRIMARY KEY (`id_experience`,`id_text`,`id_video`,`id_image`,`id_compte`), ADD KEY `fk_Experience_Text1_idx` (`id_text`), ADD KEY `fk_Experience_Video1_idx` (`id_video`), ADD KEY `fk_Experience_Image1_idx` (`id_image`), ADD KEY `fk_Experience_Compte1_idx` (`id_compte`), ADD KEY `country_experience` (`id_country`);
 
 --
+-- Index pour la table `flux`
+--
+ALTER TABLE `flux`
+  ADD PRIMARY KEY (`id_flux`);
+
+--
 -- Index pour la table `guide`
 --
 ALTER TABLE `guide`
@@ -322,12 +351,17 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
-  MODIFY `id_compte` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_compte` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `experience`
 --
 ALTER TABLE `experience`
   MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT pour la table `flux`
+--
+ALTER TABLE `flux`
+  MODIFY `id_flux` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `guide`
 --
