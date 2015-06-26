@@ -195,13 +195,12 @@ public class GestionExperience extends javax.swing.JFrame {
     private void btnDisableUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisableUserActionPerformed
         // TODO add your handling code here:
         if(experiencesTableModel.getSelectedRow() != -1){
-           ExperienceDao cDao = ExperienceDao.getInstance();
+            ExperienceDao cDao = ExperienceDao.getInstance();
             ExperienceAdapter experienceAdapter = new ExperienceAdapter();
             List<Experience> listExperience = experienceAdapter.getExperiences();
             Experience tmpExperience = listExperience.get(experiencesTableModel.getSelectedRow());
             cDao.disableExperience(tmpExperience.getId_experience(), false);
             experiencesTableModel.setModel(new ExperienceAdapter());
-
         }
     }//GEN-LAST:event_btnDisableUserActionPerformed
 

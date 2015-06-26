@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 23 Juin 2015 à 01:16
+-- Généré le :  Jeu 25 Juin 2015 à 00:30
 -- Version du serveur :  5.6.24
 -- Version de PHP :  5.6.8
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `besttrip_chamsi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `id_commentaire` int(20) NOT NULL,
+  `content_commentaire` text NOT NULL,
+  `rating_commentaire` int(10) NOT NULL,
+  `id_experience` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -56,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `compte` (
 --
 
 INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) VALUES
-(1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 0),
+(1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 1),
 (2, 'qdqsdsq', 'sdqsdsq', '', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1),
 (3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 2),
-(4, 'sqdqsd', 'qsdqsd', 'null', '2015-06-23', 1, 'qsdqs', 'dqsdqsd', 'Utilisateur', 1);
+(4, 'sqdqsd', 'qsdqsd', 'null', '2015-06-23', 1, 'qsdqs', 'dqsdqsd', 'Utilisateur', 0);
 
 -- --------------------------------------------------------
 
@@ -153,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `guide` (
   `status_guide` int(2) DEFAULT NULL,
   `id_country` int(11) NOT NULL,
   `id_compte` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `guide`
@@ -161,9 +174,8 @@ CREATE TABLE IF NOT EXISTS `guide` (
 
 INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`, `status_guide`, `id_country`, `id_compte`) VALUES
 (1, 'Guide 1', 'TEST DESCRIPTION GUIDE 1', '5', 0, 1, 2),
-(2, 'Guide 2', 'TEST DESCRIPTION GUIDE 2', '6', 1, 2, 2),
-(3, 'Guide 3', 'TEST DESCRIPTION GUIDE 3', '5', 0, 3, 2),
-(4, 'Guide 4', 'TEST DESCRIPTION GUIDE 4', '4', 1, 1, 1);
+(2, 'Guide 2', 'TEST DESCRIPTION GUIDE 2', '6', 0, 2, 2),
+(3, 'Guide 3', 'TEST DESCRIPTION GUIDE 3', '5', 0, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -272,6 +284,12 @@ INSERT INTO `ville` (`id_ville`, `nom_ville`, `score_ville`) VALUES
 --
 
 --
+-- Index pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD PRIMARY KEY (`id_commentaire`), ADD UNIQUE KEY `id_experience` (`id_experience`);
+
+--
 -- Index pour la table `companie`
 --
 ALTER TABLE `companie`
@@ -348,6 +366,11 @@ ALTER TABLE `ville`
 --
 
 --
+-- AUTO_INCREMENT pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  MODIFY `id_commentaire` int(20) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
@@ -366,10 +389,16 @@ ALTER TABLE `flux`
 -- AUTO_INCREMENT pour la table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+ADD CONSTRAINT `FK_ID_EXPERIENCE` FOREIGN KEY (`id_experience`) REFERENCES `experience` (`id_experience`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `experience`
