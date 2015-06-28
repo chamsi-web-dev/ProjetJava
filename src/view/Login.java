@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.esprit.entites.Compte;
 import daoLayer.CompteDao;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author mac
  */
 public class Login extends javax.swing.JFrame {
-
+    public static Compte compteStatic;
+    
     /**
      * Creates new form Login
      */
@@ -126,32 +128,34 @@ public class Login extends javax.swing.JFrame {
 
     private void jInscriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jInscriptionMouseClicked
         // TODO add your handling code here:
-        Inscription formInscription = new Inscription();
-        formInscription.setVisible(true);
-        this.setVisible(false);
+            Inscription formInscription = new Inscription();
+            formInscription.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_jInscriptionMouseClicked
 
     private void jConnectApplicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConnectApplicationActionPerformed
         // TODO add your handling code here:
-        
-        CompteDao cDAO = CompteDao.getInstance();
-        String resCompte = cDAO.verifyEntity(userName.getText(), pwd.getText());
-        if(resCompte != "")
-        {
-            if(resCompte.equals("Administrateur")){
-                TableauDeBord formBordUser = new TableauDeBord();
-                formBordUser.setVisible(true);
-                this.setVisible(false);
-            }else if(resCompte.equals("Utilisateur")){
-                String message = "Partie utilisateur est en cours de construction";
+            CompteDao cDAO   = CompteDao.getInstance();
+            String resCompte = cDAO.verifyEntity(userName.getText(), pwd.getText());
+
+            compteStatic = cDAO.getCompteData(userName.getText(), pwd.getText());
+
+            if(resCompte != "")
+            {   
+                if(resCompte.equals("Administrateur")){
+                    TableauDeBord formBordUser = new TableauDeBord();
+                    formBordUser.setVisible(true);
+                    this.setVisible(false);
+                }else if(resCompte.equals("Utilisateur")){
+                    UserInterfaceBord formBordUser = new UserInterfaceBord();
+                    formBordUser.setVisible(true);
+                    this.setVisible(false);
+                }
+
+            }else{
+                String message = "Utlisateur non trouvé";
                 JOptionPane.showMessageDialog(new JFrame(), message, "Erreur authentification",
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        }else{
-            String message = "Utlisateur non trouvé";
-            JOptionPane.showMessageDialog(new JFrame(), message, "Erreur authentification",
-                JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             }
     }//GEN-LAST:event_jConnectApplicationActionPerformed
 

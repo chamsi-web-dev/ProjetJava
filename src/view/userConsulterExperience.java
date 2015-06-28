@@ -11,7 +11,6 @@ import daoLayer.ExperienceDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import tables.CommentaireAdapter;
-import tables.GuideAdapter;
 
 /**
  *
@@ -122,9 +121,6 @@ public class userConsulterExperience extends javax.swing.JFrame {
         ratingCommentaire = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         addExperience = new javax.swing.JButton();
-        enableExperience = new javax.swing.JButton();
-        disableExperience = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         commentaireTableModel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -334,30 +330,6 @@ public class userConsulterExperience extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 1120, 400));
 
-        enableExperience.setText("Activé");
-        enableExperience.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enableExperienceActionPerformed(evt);
-            }
-        });
-        getContentPane().add(enableExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
-
-        disableExperience.setText("Désactivé");
-        disableExperience.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                disableExperienceActionPerformed(evt);
-            }
-        });
-        getContentPane().add(disableExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, -1, -1));
-
-        jButton3.setText("Supprimer");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, -1, -1));
-
         commentaireTableModel.setModel(new CommentaireAdapter());
         jScrollPane3.setViewportView(commentaireTableModel);
 
@@ -392,50 +364,9 @@ public class userConsulterExperience extends javax.swing.JFrame {
             
             CommentaireDao commDao = CommentaireDao.getInstance();
             commDao.insertEntity(comm);
+            commentaireTableModel.setModel(new CommentaireAdapter());
+
     }//GEN-LAST:event_addExperienceActionPerformed
-
-    private void enableExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableExperienceActionPerformed
-        // TODO add your handling code here:
-            if(commentaireTableModel.getSelectedRow() != -1){
-                CommentaireDao cDao = CommentaireDao.getInstance();
-                CommentaireAdapter commentaireAdapter = new CommentaireAdapter();
-                List<Commentaire> listCommentaire = commentaireAdapter.getCommentaires();
-                Commentaire tmpCommentaire = listCommentaire.get(commentaireTableModel.getSelectedRow());
-                System.out.println(tmpCommentaire.getIdCommentaire());
-                cDao.disableCommentaire(tmpCommentaire.getIdCommentaire(), true);
-                commentaireTableModel.setModel(new CommentaireAdapter());
-            }
-    }//GEN-LAST:event_enableExperienceActionPerformed
-
-    private void disableExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disableExperienceActionPerformed
-        // TODO add your handling code here:
-        if(commentaireTableModel.getSelectedRow() != -1){
-                CommentaireDao cDao = CommentaireDao.getInstance();
-                CommentaireAdapter commentaireAdapter = new CommentaireAdapter();
-                List<Commentaire> listCommentaire = commentaireAdapter.getCommentaires();
-                Commentaire tmpCommentaire = listCommentaire.get(commentaireTableModel.getSelectedRow());
-                cDao.disableCommentaire(tmpCommentaire.getIdCommentaire(), false);
-                commentaireTableModel.setModel(new CommentaireAdapter());
-            }
-    }//GEN-LAST:event_disableExperienceActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        if(commentaireTableModel.getSelectedRow() != -1){
-               CommentaireDao commentaireDao          = CommentaireDao.getInstance();
-               CommentaireAdapter commentaireAdapter  = new CommentaireAdapter();
-               List<Commentaire> listCommentaire       = commentaireAdapter.getCommentaires();
-               Commentaire tmpCommentaire              = listCommentaire.get(commentaireTableModel.getSelectedRow());
-               //commentaireDao.deleteEntity(tmpCommentaire);
-                
-               JOptionPane jop = new JOptionPane();
-
-                if(commentaireDao.deleteEntity(tmpCommentaire)){
-                    jop.showMessageDialog(null, "Suppression de commentaire avec sucess", "Sucess", JOptionPane.INFORMATION_MESSAGE);
-                }
-               commentaireTableModel.setModel(new CommentaireAdapter());
-            }
-    }//GEN-LAST:event_jButton3ActionPerformed
     
     public void returnExperienceForm(){
         UserListeExperience expForm = new UserListeExperience();
@@ -518,10 +449,7 @@ public class userConsulterExperience extends javax.swing.JFrame {
     private javax.swing.JLabel contentExperience;
     private javax.swing.JLabel decalageExperience;
     private javax.swing.JLabel depenseExperience;
-    private javax.swing.JButton disableExperience;
-    private javax.swing.JButton enableExperience;
     private javax.swing.JLabel endExperience;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

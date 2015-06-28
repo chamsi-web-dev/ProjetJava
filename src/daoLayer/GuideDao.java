@@ -134,6 +134,66 @@ public class GuideDao implements ICrud<Guide>{
                 addGuide.setDescription_guide(resultGuide.getString("description_guide"));
                 addGuide.setNote_guide(resultGuide.getInt("note_guide"));
                 addGuide.setStatus_guide(resultGuide.getInt("status_guide"));
+                addGuide.setId_compte(resultGuide.getInt("id_compte"));
+                addGuide.setId_country(resultGuide.getInt("id_country"));
+                
+                listGuide.add(addGuide);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        return listGuide;
+        
+    }
+
+    public List<Guide> displayAllGuideByCountry(int id) {
+        List<Guide> listGuide = new ArrayList<>();
+        String req = "SELECT * FROM guide where id_country = "+id;
+        
+        try {
+            resultGuide = guideStatement.executeQuery(req);
+            
+            while (resultGuide.next()) {
+                Guide addGuide = new Guide();
+                addGuide.setId_guide(resultGuide.getInt("id_guide"));
+                addGuide.setName_guide(resultGuide.getString("name_guide"));
+                addGuide.setDescription_guide(resultGuide.getString("description_guide"));
+                addGuide.setNote_guide(resultGuide.getInt("note_guide"));
+                addGuide.setStatus_guide(resultGuide.getInt("status_guide"));
+                addGuide.setId_country(resultGuide.getInt("id_compte"));
+                addGuide.setId_country(resultGuide.getInt("id_country"));
+                
+                listGuide.add(addGuide);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        return listGuide;
+        
+    }
+
+    public List<Guide> displayAllEnableEntity() {
+        List<Guide> listGuide = new ArrayList<>();
+        String req = "SELECT * FROM guide where status_guide = 1";
+        
+        try {
+            resultGuide = guideStatement.executeQuery(req);
+            
+            while (resultGuide.next()) {
+                Guide addGuide = new Guide();
+                addGuide.setId_guide(resultGuide.getInt("id_guide"));
+                addGuide.setName_guide(resultGuide.getString("name_guide"));
+                addGuide.setDescription_guide(resultGuide.getString("description_guide"));
+                addGuide.setNote_guide(resultGuide.getInt("note_guide"));
+                addGuide.setStatus_guide(resultGuide.getInt("status_guide"));
                 addGuide.setId_country(resultGuide.getInt("id_compte"));
                 addGuide.setId_country(resultGuide.getInt("id_country"));
                 

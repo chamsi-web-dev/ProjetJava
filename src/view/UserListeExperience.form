@@ -4,14 +4,6 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="userManage">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Profile"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMouseClicked"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="guideManage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guides"/>
@@ -24,6 +16,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lister"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listeGuideMouseClicked"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listeGuideMousePressed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="createGuide">
               <Properties>
@@ -57,6 +53,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lister"/>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listeExperienceMousePressed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -72,6 +71,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Recommander"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="userManage">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Profile"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

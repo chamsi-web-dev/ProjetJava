@@ -47,8 +47,8 @@ public class CommentaireDao implements ICrud<Commentaire>{
 
     @Override
     public boolean insertEntity(Commentaire commentaire) {
-        String req = "INSERT INTO `commentaire` (`id_commentaire`, `content_commentaire`, `rating_commentaire`, `id_experience`) \n" +
-                     "VALUES ( NULL, '"+commentaire.getContentCommentaire()+"', "+commentaire.getRatingCommentaire()+", "+commentaire.getIdExperience()+");";
+        String req = "INSERT INTO `commentaire` (`id_commentaire`, `content_commentaire`, `rating_commentaire`, `id_experience`, `status_commentaire`) \n" +
+                     "VALUES ( NULL, '"+commentaire.getContentCommentaire()+"', "+commentaire.getRatingCommentaire()+", "+commentaire.getIdExperience()+", 1);";
         System.out.println(req);
         try {
             commentaireStatement.executeUpdate(req);

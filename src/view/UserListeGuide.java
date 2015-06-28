@@ -5,24 +5,24 @@
  */
 package view;
 
-import com.esprit.entites.Experience;
-import daoLayer.ExperienceDao;
+import com.esprit.entites.Guide;
+import daoLayer.GuideDao;
 import java.util.List;
-import tables.ExperienceAdapter;
+import tables.UserGuideAdapter;
 
 
 /**
  *
  * @author mac
  */
-public class UserListeExperience extends javax.swing.JFrame {
-    public static Experience experiencStatic;
-    public static String titleExperience;
+public class UserListeGuide extends javax.swing.JFrame {
+    public static Guide guideStatic;
+    public static String titleGuide;
     
     /**
      * Creates new form TableauDeBord
      */
-    public UserListeExperience() {
+    public UserListeGuide() {
         initComponents();
     }
 
@@ -36,15 +36,16 @@ public class UserListeExperience extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        userListExperience = new javax.swing.JTable();
-        consulterExperience = new javax.swing.JButton();
+        userGuideTableModel = new javax.swing.JTable();
+        consulterGuide = new javax.swing.JButton();
+        countryGuide = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         guideManage = new javax.swing.JMenu();
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
-        contributeGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
@@ -55,19 +56,35 @@ public class UserListeExperience extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userListExperience.setModel(new ExperienceAdapter());
-        userListExperience.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(userListExperience);
+        userGuideTableModel.setModel(new UserGuideAdapter());
+        userGuideTableModel.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(userGuideTableModel);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 870, -1));
 
-        consulterExperience.setText("Consulter");
-        consulterExperience.addActionListener(new java.awt.event.ActionListener() {
+        consulterGuide.setText("Consulter");
+        consulterGuide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consulterExperienceActionPerformed(evt);
+                consulterGuideActionPerformed(evt);
             }
         });
-        getContentPane().add(consulterExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+        getContentPane().add(consulterGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
+
+        countryGuide.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tunisie", "France ", "Suisse", "Italie" }));
+        countryGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                countryGuideMousePressed(evt);
+            }
+        });
+        countryGuide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryGuideActionPerformed(evt);
+            }
+        });
+        getContentPane().add(countryGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 80, -1));
+
+        jLabel3.setText("Choisir une pays : ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 90, 100, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/20204_1201798667.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 240, -1));
@@ -84,9 +101,6 @@ public class UserListeExperience extends javax.swing.JFrame {
 
         listeGuide.setText("Lister");
         listeGuide.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listeGuideMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 listeGuideMousePressed(evt);
             }
@@ -95,14 +109,6 @@ public class UserListeExperience extends javax.swing.JFrame {
 
         createGuide.setText("Créer");
         guideManage.add(createGuide);
-
-        contributeGuide.setText("Contribuer");
-        contributeGuide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contributeGuideActionPerformed(evt);
-            }
-        });
-        guideManage.add(contributeGuide);
 
         jMenuBar1.add(guideManage);
 
@@ -114,6 +120,11 @@ public class UserListeExperience extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("Créer");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem1MousePressed(evt);
+            }
+        });
         createExperience.add(jMenuItem1);
 
         listeExperience.setText("Lister");
@@ -137,7 +148,7 @@ public class UserListeExperience extends javax.swing.JFrame {
         recommandUser.setText("Recommander");
         jMenuBar1.add(recommandUser);
 
-        userManage.setText("Profile");
+        userManage.setText("Exit");
         userManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userManageMouseClicked(evt);
@@ -153,7 +164,6 @@ public class UserListeExperience extends javax.swing.JFrame {
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
             System.exit(0);
-
     }//GEN-LAST:event_userManageMouseClicked
 
     private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
@@ -166,32 +176,26 @@ public class UserListeExperience extends javax.swing.JFrame {
 
     private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
         // TODO add your handling code here:
+            GestionNewsletter newsletterManage = new GestionNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_newsletterManageMouseClicked
 
-    private void contributeGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contributeGuideActionPerformed
+    private void consulterGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterGuideActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contributeGuideActionPerformed
-
-    private void consulterExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterExperienceActionPerformed
-        // TODO add your handling code here:
-        if(userListExperience.getSelectedRow() != -1){
-            ExperienceDao experienceDao           = ExperienceDao.getInstance();
-            ExperienceAdapter experiencesAdapter  = new ExperienceAdapter();
-            List<Experience> listExperience       = experiencesAdapter.getExperiences();
-            Experience tmpExperience              = listExperience.get(userListExperience.getSelectedRow());
-            
-            titleExperience  = tmpExperience.getTitle_experience();
-            experiencStatic  = tmpExperience;
-            
-            userConsulterExperience voirExperience    =  new userConsulterExperience();
-            voirExperience.setVisible(true);
+        if(userGuideTableModel.getSelectedRow() != -1){
+            GuideDao guideDao               = GuideDao.getInstance();
+            UserGuideAdapter guidesAdapter  = new UserGuideAdapter();
+            List<Guide> listGuide           = guidesAdapter.getGuides();
+            Guide tmpGuide                  = listGuide.get(userGuideTableModel.getSelectedRow());
+            System.out.println(tmpGuide);
+            //userGuideTableModel.setModel(new UserGuideAdapter());
+            guideStatic  = tmpGuide;
+            userConsulterGuide voirGuide    =  new userConsulterGuide();
+            voirGuide.setVisible(true);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_consulterExperienceActionPerformed
-
-    private void listeGuideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listeGuideMouseClicked
+    }//GEN-LAST:event_consulterGuideActionPerformed
 
     private void listeGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMousePressed
         // TODO add your handling code here:
@@ -200,12 +204,28 @@ public class UserListeExperience extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_listeGuideMousePressed
 
+    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1MousePressed
+
     private void listeExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMousePressed
         // TODO add your handling code here:
         UserListeExperience experienceList = new UserListeExperience();
         experienceList.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_listeExperienceMousePressed
+
+    private void countryGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryGuideMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_countryGuideMousePressed
+
+    private void countryGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryGuideActionPerformed
+        // TODO add your handling code here:
+        if(countryGuide.getSelectedItem()!= "")
+        {
+            userGuideTableModel.setModel(new UserGuideAdapter(countryGuide.getSelectedIndex()+1));
+        }
+    }//GEN-LAST:event_countryGuideActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,14 +244,18 @@ public class UserListeExperience extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserListeExperience.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserListeGuide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserListeExperience.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserListeGuide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserListeExperience.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserListeGuide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserListeExperience.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserListeGuide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -240,19 +264,20 @@ public class UserListeExperience extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserListeExperience().setVisible(true);
+                new UserListeGuide().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton consulterExperience;
-    private javax.swing.JMenuItem contributeGuide;
+    private javax.swing.JButton consulterGuide;
+    private javax.swing.JComboBox countryGuide;
     private javax.swing.JMenu createExperience;
     private javax.swing.JMenuItem createGuide;
     private javax.swing.JMenu guideManage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -260,7 +285,7 @@ public class UserListeExperience extends javax.swing.JFrame {
     private javax.swing.JMenuItem listeGuide;
     private javax.swing.JMenu newsletterManage;
     private javax.swing.JMenu recommandUser;
-    private javax.swing.JTable userListExperience;
+    private javax.swing.JTable userGuideTableModel;
     private javax.swing.JMenu userManage;
     // End of variables declaration//GEN-END:variables
 }

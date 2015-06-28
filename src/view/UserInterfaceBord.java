@@ -30,16 +30,15 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        userManage = new javax.swing.JMenu();
         guideManage = new javax.swing.JMenu();
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
-        contributeGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
+        userManage = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,14 +49,6 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 940, 510));
 
-        userManage.setText("Profile");
-        userManage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userManageMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(userManage);
-
         guideManage.setText("Guides");
         guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -66,18 +57,18 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         });
 
         listeGuide.setText("Lister");
+        listeGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeGuideMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listeGuideMousePressed(evt);
+            }
+        });
         guideManage.add(listeGuide);
 
         createGuide.setText("Créer");
         guideManage.add(createGuide);
-
-        contributeGuide.setText("Contribuer");
-        contributeGuide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contributeGuideActionPerformed(evt);
-            }
-        });
-        guideManage.add(contributeGuide);
 
         jMenuBar1.add(guideManage);
 
@@ -118,6 +109,14 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         recommandUser.setText("Recommander");
         jMenuBar1.add(recommandUser);
 
+        userManage.setText("Exit");
+        userManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userManageMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(userManage);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -125,16 +124,11 @@ public class UserInterfaceBord extends javax.swing.JFrame {
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
-            GestionUtilisateur userManage = new GestionUtilisateur();
-            userManage.setVisible(true);
-            this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_userManageMouseClicked
 
     private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
         // TODO add your handling code here:
-            GestionGuide guideManage = new GestionGuide();
-            guideManage.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_guideManageMouseClicked
 
     private void createExperienceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createExperienceMouseClicked
@@ -143,14 +137,7 @@ public class UserInterfaceBord extends javax.swing.JFrame {
 
     private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
         // TODO add your handling code here:
-            GestionNewsletter newsletterManage = new GestionNewsletter();
-            newsletterManage.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_newsletterManageMouseClicked
-
-    private void contributeGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contributeGuideActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contributeGuideActionPerformed
 
     private void listeExperienceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMouseClicked
         // TODO add your handling code here:
@@ -167,9 +154,20 @@ public class UserInterfaceBord extends javax.swing.JFrame {
     private void listeExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMousePressed
         // TODO add your handling code here:
         UserListeExperience experienceList = new UserListeExperience();
-            experienceList.setVisible(true);
-            this.setVisible(false);
+        experienceList.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_listeExperienceMousePressed
+
+    private void listeGuideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listeGuideMouseClicked
+
+    private void listeGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMousePressed
+        // TODO add your handling code here:
+        UserListeGuide guideList = new UserListeGuide();
+        guideList.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_listeGuideMousePressed
 
     /**
      * @param args the command line arguments
@@ -208,7 +206,6 @@ public class UserInterfaceBord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem contributeGuide;
     private javax.swing.JMenu createExperience;
     private javax.swing.JMenuItem createGuide;
     private javax.swing.JMenu guideManage;

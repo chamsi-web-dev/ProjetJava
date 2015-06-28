@@ -85,12 +85,10 @@ public class Guide {
     public void setId_compte(int id_compte) {
         this.id_compte = id_compte;
     }
-    
+
     @Override
     public String toString() {
-        return "Guide{" + "id_guide=" + id_guide + ", name_guide=" + name_guide + ", description_guide=" + description_guide + ", note_guide=" + note_guide + ", status_guide=" + status_guide + '}';
+        return "Guide{" + "id_guide=" + id_guide + ", name_guide=" + name_guide + ", description_guide=" + description_guide + ", note_guide=" + note_guide + ", status_guide=" + status_guide + ", id_country=" + id_country + ", id_compte=" + id_compte + '}';
     }
-    
-  
   
 }

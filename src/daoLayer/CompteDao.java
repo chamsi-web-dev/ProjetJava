@@ -141,6 +141,22 @@ public class CompteDao  implements ICrud<Compte>{
         
         return "";
     }
+    
+    public Compte getCompteData(String username, String password) {
+        String reqVerify = "SELECT * FROM compte WHERE login_compte='"+username+"' and pwd_compte = '"+password+"'";
+        Compte compte = new Compte();
+
+        try {
+            resultCompte = compteStatement.executeQuery(reqVerify);
+            resultCompte.next();
+                //System.out.println(resultCompte.toString());
+            compte.setId_compte(resultCompte.getInt("id_compte"));
+        } catch (SQLException ex) {
+            Logger.getLogger(ExperienceDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return compte;
+    }
 
     @Override
     public List<Compte> displayAllEntity() {
@@ -186,17 +202,22 @@ public class CompteDao  implements ICrud<Compte>{
         } catch (SQLException ex) {
             jop.showMessageDialog(null, "erreur lors de la désactivation du compte!", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        /*
+    }
+    
+    public void abonnementNewsletter(int id, boolean active) {
+        String req  = " Update `compte` "
+                    + " SET `newsletter_compte`= "+active
+                    + " WHERE `id_compte` = "+id;
+        
+        JOptionPane jop = new JOptionPane();
+
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setBoolean(1, active);
-            ps.setInt(2, id);
-            ps.executeUpdate();
-            System.out.println("Le compte est désactivé avec succé");
+            compteStatement.executeUpdate(req);
+            jop.showMessageDialog(null, "Le compte est abonné au newsletter avec succé", "Sucess", JOptionPane.PLAIN_MESSAGE);        
         } catch (SQLException ex) {
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "erreur lors de la désactivation du compte!", "Erreur", JOptionPane.ERROR_MESSAGE);
-        }*/
+            jop.showMessageDialog(null, "erreur lors de l'abonnement au newsletter !", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
 
     
