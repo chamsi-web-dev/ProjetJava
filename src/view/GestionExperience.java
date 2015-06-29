@@ -214,9 +214,13 @@ public class GestionExperience extends javax.swing.JFrame {
                experienceDao.deleteEntity(tmpExperience);
                 
                JOptionPane jop = new JOptionPane();
-
-                if(experienceDao.deleteEntity(tmpExperience)){
-                    jop.showMessageDialog(null, "Suppression de "+tmpExperience.getTitle_experience()+" avec sucess", "Sucess", JOptionPane.ERROR_MESSAGE);
+               
+               try {
+                    if(experienceDao.deleteEntity(tmpExperience)){
+                        jop.showMessageDialog(null, "Suppression de "+tmpExperience.getTitle_experience()+" avec sucess", "Sucess", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    jop.showMessageDialog(null, e.getMessage(), "Sucess", JOptionPane.ERROR_MESSAGE);
                 }
                experiencesTableModel.setModel(new GuideAdapter());
             }

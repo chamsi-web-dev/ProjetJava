@@ -25,6 +25,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cr&#xe9;er"/>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="createGuideMousePressed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -72,6 +75,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMousePressed"/>
           </Events>
         </Menu>
       </SubComponents>

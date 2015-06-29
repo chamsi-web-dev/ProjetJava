@@ -49,8 +49,9 @@ public class GuideDao implements ICrud<Guide>{
 
     @Override
     public boolean insertEntity(Guide g) {
-        String req = "INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`, `statuts_guide`, `id_country`, `id_compte`) \n" +
-                     "VALUES ('', '"+g.getName_guide()+"', '"+g.getDescription_guide()+"', '"+g.getNote_guide()+"', '"+g.getStatus_guide()+", '"+g.getId_country()+", '"+g.getId_compte()+"');";
+        String req = "INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`, `status_guide`, `id_country`, `id_compte`) \n" +
+                     "VALUES (NULL, '"+g.getName_guide()+"', '"+g.getDescription_guide()+"', "+g.getNote_guide()+", "+g.getStatus_guide()+", "+g.getId_country()+", "+g.getId_compte()+");";
+        System.out.println(req);
         try {
             guideStatement.executeUpdate(req);
             return true;

@@ -146,6 +146,7 @@ public class CommentaireDao implements ICrud<Commentaire>{
                 addCommentaire.setIdCommentaire(resultSet.getInt("id_commentaire"));
                 addCommentaire.setContentCommentaire(resultSet.getString("content_commentaire"));
                 addCommentaire.setRatingCommentaire(resultSet.getInt("rating_commentaire"));
+                addCommentaire.setStatusCommentaire(resultSet.getInt("status_commentaire"));
                 
                 listCommentaire.add(addCommentaire);
             }
@@ -157,25 +158,19 @@ public class CommentaireDao implements ICrud<Commentaire>{
         return listCommentaire;
     }
     
-    public void disableCommentaire(int id,boolean active) {
-        String operation;
-        if(active)
-            operation = "Activé";
-        else
-            operation = "Désactivé";
-        
-        String req = "  Update `commentaire` "
-                    + " SET    `status_commentaire`= "+active
-                    + " WHERE `id_commentaire` = "+id;
+    public void disableCommentaire(int id, boolean active) {
+        String req = "UPDATE `commentaire` SET `status_commentaire` = "+active+" WHERE `id_commentaire` = "+id;
+
         System.out.println(req);
         JOptionPane jop = new JOptionPane();
 
         try {
             commentaireStatement.executeUpdate(req);
-            jop.showMessageDialog(null, "Mise à jour de commenntaire avec succé", "Sucess", JOptionPane.PLAIN_MESSAGE);        
+            jop.showMessageDialog(null, "Mise à jour de commentaire avec succé", "Sucess", JOptionPane.PLAIN_MESSAGE);        
         } catch (SQLException ex) {
             jop.showMessageDialog(null, "erreur lors de mise à jour de commentaire !", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
     
 }

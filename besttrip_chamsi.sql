@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 25 Juin 2015 à 00:30
+-- Généré le :  Lun 29 Juin 2015 à 02:48
 -- Version du serveur :  5.6.24
 -- Version de PHP :  5.6.8
 
@@ -30,8 +30,21 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `id_commentaire` int(20) NOT NULL,
   `content_commentaire` text NOT NULL,
   `rating_commentaire` int(10) NOT NULL,
-  `id_experience` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_experience` int(11) NOT NULL,
+  `status_commentaire` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id_commentaire`, `content_commentaire`, `rating_commentaire`, `id_experience`, `status_commentaire`) VALUES
+(5, 'jkhkhkjhkjhkhk', 3, 7, 0),
+(6, 'test content', 3, 7, 1),
+(7, 'test', 2, 7, 1),
+(8, 'qsdsqdqs', 4, 7, 0),
+(9, 'sqdqsdf', 7, 7, 0),
+(10, 'wqsdq', 2, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -61,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `login_compte` varchar(20) DEFAULT NULL,
   `pwd_compte` varchar(20) DEFAULT NULL,
   `type_compte` varchar(20) DEFAULT NULL,
+  `newsletter_compte` int(2) NOT NULL,
   `status_compte` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -68,11 +82,36 @@ CREATE TABLE IF NOT EXISTS `compte` (
 -- Contenu de la table `compte`
 --
 
-INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) VALUES
-(1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 1),
-(2, 'qdqsdsq', 'sdqsdsq', '', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1),
-(3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 2),
-(4, 'sqdqsd', 'qsdqsd', 'null', '2015-06-23', 1, 'qsdqs', 'dqsdqsd', 'Utilisateur', 0);
+INSERT INTO `compte` (`id_compte`, `nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `newsletter_compte`, `status_compte`) VALUES
+(1, 'chamsi', 'bardi', '', '2015-06-10', 2, 'chamsi', 'chamsi', 'Utilisateur', 0, 1),
+(2, 'qdqsdsq', 'sdqsdsq', '', '2015-06-01', 3, 'qsdq', 'QQDSQD', 'Utilisateur', 1, 1),
+(3, 'User 3', 'prénom3', '', '2015-06-22', 4, 'user4', 'user4', 'Administrateur', 0, 2),
+(4, 'sqdqsd', 'qsdqsd', 'null', '2015-06-23', 1, 'qsdqs', 'dqsdqsd', 'Utilisateur', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contribution`
+--
+
+CREATE TABLE IF NOT EXISTS `contribution` (
+  `id_contribution` int(50) NOT NULL,
+  `description_contribution` varchar(50) NOT NULL,
+  `id_compte` int(11) NOT NULL,
+  `status_contribution` int(2) DEFAULT NULL,
+  `id_guide` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `contribution`
+--
+
+INSERT INTO `contribution` (`id_contribution`, `description_contribution`, `id_compte`, `status_contribution`, `id_guide`) VALUES
+(3, 'desc contribution 1', 1, 0, 1),
+(9, 'test guide compte', 1, 0, 3),
+(10, 'zedzdqsdzqdqs', 1, 0, 3),
+(11, 'zedzdqsdzqdqsqsqsqSQsqSQsq', 1, 0, 3),
+(12, '<qsdqsdsqdqs', 1, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -126,9 +165,8 @@ CREATE TABLE IF NOT EXISTS `experience` (
 --
 
 INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire_experience`, `start_experience`, `end_experience`, `season_experience`, `depense_experience`, `note_experience`, `id_text`, `id_video`, `id_image`, `id_compte`, `id_country`, `status_experience`) VALUES
-(5, 'Experience 1', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
 (6, 'Experience 2', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
-(7, 'Experience 3', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 0);
+(7, 'Experience 3', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -166,16 +204,16 @@ CREATE TABLE IF NOT EXISTS `guide` (
   `status_guide` int(2) DEFAULT NULL,
   `id_country` int(11) NOT NULL,
   `id_compte` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `guide`
 --
 
 INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`, `status_guide`, `id_country`, `id_compte`) VALUES
-(1, 'Guide 1', 'TEST DESCRIPTION GUIDE 1', '5', 0, 1, 2),
+(1, 'Guide 1', 'TEST DESCRIPTION GUIDE 1', '5', 1, 1, 2),
 (2, 'Guide 2', 'TEST DESCRIPTION GUIDE 2', '6', 0, 2, 2),
-(3, 'Guide 3', 'TEST DESCRIPTION GUIDE 3', '5', 0, 3, 2);
+(3, 'Guide 3', 'TEST DESCRIPTION GUIDE 3', '5', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -287,7 +325,7 @@ INSERT INTO `ville` (`id_ville`, `nom_ville`, `score_ville`) VALUES
 -- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`id_commentaire`), ADD UNIQUE KEY `id_experience` (`id_experience`);
+  ADD PRIMARY KEY (`id_commentaire`), ADD KEY `id_experience_2` (`id_experience`);
 
 --
 -- Index pour la table `companie`
@@ -300,6 +338,12 @@ ALTER TABLE `companie`
 --
 ALTER TABLE `compte`
   ADD PRIMARY KEY (`id_compte`);
+
+--
+-- Index pour la table `contribution`
+--
+ALTER TABLE `contribution`
+  ADD PRIMARY KEY (`id_contribution`), ADD KEY `id_guide` (`id_guide`), ADD KEY `id_compte` (`id_compte`);
 
 --
 -- Index pour la table `country`
@@ -369,12 +413,17 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id_commentaire` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commentaire` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
   MODIFY `id_compte` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `contribution`
+--
+ALTER TABLE `contribution`
+  MODIFY `id_contribution` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `experience`
 --
@@ -389,7 +438,7 @@ ALTER TABLE `flux`
 -- AUTO_INCREMENT pour la table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Contraintes pour les tables exportées
 --
@@ -398,7 +447,14 @@ ALTER TABLE `guide`
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-ADD CONSTRAINT `FK_ID_EXPERIENCE` FOREIGN KEY (`id_experience`) REFERENCES `experience` (`id_experience`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `FK_ID_EXPERIENCE` FOREIGN KEY (`id_experience`) REFERENCES `experience` (`id_experience`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `contribution`
+--
+ALTER TABLE `contribution`
+ADD CONSTRAINT `FK_ID_COMPTE` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id_compte`),
+ADD CONSTRAINT `FK_ID_GUIDE` FOREIGN KEY (`id_guide`) REFERENCES `guide` (`id_guide`);
 
 --
 -- Contraintes pour la table `experience`

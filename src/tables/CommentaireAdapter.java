@@ -15,7 +15,7 @@ import view.UserListeExperience;
 
 public class CommentaireAdapter extends AbstractTableModel {
     
-    String[] headers     = {"Commentaire", "Rating"};
+    String[] headers     = {"Commentaire", "Rating", "Status"};
     List<Commentaire> commentaires = new ArrayList<>();
     CommentaireDao commentaireDao;
     
@@ -29,7 +29,7 @@ public class CommentaireAdapter extends AbstractTableModel {
 
     public CommentaireAdapter() {
         commentaireDao = CommentaireDao.getInstance();
-        commentaires = commentaireDao.allCommentsByExperience(UserListeExperience.experiencStatic.getId_experience());
+        commentaires = commentaireDao.displayAllEntity();
     }
 
     @Override
@@ -54,13 +54,13 @@ public class CommentaireAdapter extends AbstractTableModel {
                 return commentaires.get(rowIndex).getContentCommentaire();
             case 1:
                 return commentaires.get(rowIndex).getRatingCommentaire()+"/10";
-            /*case 2:
+            case 2:
                 if(commentaires.get(rowIndex).getStatusCommentaire() == 1)
                     return "Activé";
                 else
-                    return "Désactivé";*/
+                    return "Désactivé";
             default:
-            return null;
+                return null;
         }        
     }
     
