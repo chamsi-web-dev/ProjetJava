@@ -6,19 +6,24 @@
 package view;
 
 import com.esprit.entites.Experience;
+import com.esprit.entites.Image;
+import com.esprit.entites.Text;
+import com.esprit.entites.Video;
 import daoLayer.ExperienceDao;
-import java.util.List;
-import tables.ExperienceAdapter;
-
+import daoLayer.ImageDao;
+import daoLayer.TexteDao;
+import daoLayer.VideoDao;
+import java.io.File;
+import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author mac
  */
 public class UserAddExperience extends javax.swing.JFrame {
-    public static Experience experiencStatic;
-    public static String titleExperience;
-    
+
     /**
      * Creates new form TableauDeBord
      */
@@ -34,130 +39,152 @@ public class UserAddExperience extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel3 = new javax.swing.JLabel();
-        titreExperience = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        decalageExperience = new javax.swing.JTextField();
+        startExperience = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
+        endExperience = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        seasonExperience = new javax.swing.JComboBox();
         depenseExperience = new javax.swing.JLabel();
         depensExperience = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        noteExperience = new javax.swing.JComboBox();
-        jLabel9 = new javax.swing.JLabel();
         countryExperience = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        noteExperience = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
         typeContentExperience = new javax.swing.JLabel();
         btnTextExperience = new javax.swing.JRadioButton();
         btnImgExperience = new javax.swing.JRadioButton();
         btnVideoExperience = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textExperience = new javax.swing.JTextArea();
-        startExperience = new com.toedter.calendar.JDateChooser();
-        endExperience = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
+        imageUpload = new javax.swing.JTextField();
+        addImage = new javax.swing.JButton();
+        addVideo = new javax.swing.JButton();
+        videoUpload = new javax.swing.JTextField();
+        btnAddExperience = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        decalageExperience = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        titleExperience = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        userManage = new javax.swing.JMenu();
         guideManage = new javax.swing.JMenu();
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
-        contributeGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
+        userManage = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("Titre expérience : ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, 20));
-        getContentPane().add(titreExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 120, -1));
-
-        jLabel5.setText("Décalage horaire :");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 100, 20));
-        getContentPane().add(decalageExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 150, -1));
+        startExperience.setDateFormatString("yyyy-MM-d");
+        getContentPane().add(startExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 120, -1));
 
         jLabel2.setText("Date de début :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
+        endExperience.setDateFormatString("yyyy-MM-d");
+        getContentPane().add(endExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 150, -1));
 
         jLabel6.setText("Date de fin :");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, 20));
 
         jLabel7.setText("Saison : ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Automne", "Hiver", "Printemps", "Eté" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 120, -1));
+        seasonExperience.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Automne", "Hiver", "Printemps", "Eté" }));
+        getContentPane().add(seasonExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 150, -1));
 
         depenseExperience.setText("Dépense : ");
-        getContentPane().add(depenseExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
-        getContentPane().add(depensExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 150, 20));
-
-        jLabel8.setText("Note :");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
-
-        noteExperience.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        getContentPane().add(noteExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 120, -1));
-
-        jLabel9.setText("Pays : ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+        getContentPane().add(depenseExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
+        getContentPane().add(depensExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 150, 20));
 
         countryExperience.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tunisie", "France", "Suisse", "Italie", "Egypte", "Malysie", "île de séchelle" }));
-        getContentPane().add(countryExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 150, -1));
+        getContentPane().add(countryExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 120, -1));
+
+        jLabel9.setText("Pays : ");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+
+        noteExperience.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        getContentPane().add(noteExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 120, -1));
+
+        jLabel8.setText("Note :");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
         typeContentExperience.setText("Type de contenu :");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, typeContentExperience, org.jdesktop.beansbinding.ELProperty.create("${background.RGB}"), typeContentExperience, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
-
-        getContentPane().add(typeContentExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, 20));
+        getContentPane().add(typeContentExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, 20));
 
         btnTextExperience.setText("Texte");
-        getContentPane().add(btnTextExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        btnTextExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTextExperienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTextExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, -1));
 
         btnImgExperience.setText("Image");
-        getContentPane().add(btnImgExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        btnImgExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImgExperienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnImgExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
 
         btnVideoExperience.setText("Vidéo");
-        getContentPane().add(btnVideoExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
+        btnVideoExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVideoExperienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVideoExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
 
         textExperience.setColumns(20);
         textExperience.setRows(5);
         jScrollPane1.setViewportView(textExperience);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 520, 200));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 520, 200));
+        getContentPane().add(imageUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 170, 40));
 
-        startExperience.setDateFormatString("yyyy-MM-d");
-        getContentPane().add(startExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, -1));
-
-        endExperience.setDateFormatString("yyyy-MM-d");
-        getContentPane().add(endExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 150, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
-        jLabel1.setText("Dépense : ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 940, 740));
-
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
-
-        jCheckBox1.setText("jCheckBox1");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, -1, -1));
-
-        userManage.setText("Profile");
-        userManage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userManageMouseClicked(evt);
+        addImage.setText("Attach");
+        addImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addImageActionPerformed(evt);
             }
         });
-        jMenuBar1.add(userManage);
+        getContentPane().add(addImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, 40));
+
+        addVideo.setText("Attach");
+        addVideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addVideoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, 40));
+        getContentPane().add(videoUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, 170, 40));
+
+        btnAddExperience.setText("Ajouter");
+        btnAddExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExperienceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAddExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, -1, -1));
+
+        jLabel3.setText("Décalage horaire :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 90, 20));
+        getContentPane().add(decalageExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 120, -1));
+
+        jLabel4.setText("Titre :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 70, 20));
+        getContentPane().add(titleExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 430, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 940, 590));
 
         guideManage.setText("Guides");
         guideManage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,6 +195,9 @@ public class UserAddExperience extends javax.swing.JFrame {
 
         listeGuide.setText("Lister");
         listeGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeGuideMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 listeGuideMousePressed(evt);
             }
@@ -175,15 +205,12 @@ public class UserAddExperience extends javax.swing.JFrame {
         guideManage.add(listeGuide);
 
         createGuide.setText("Créer");
-        guideManage.add(createGuide);
-
-        contributeGuide.setText("Contribuer");
-        contributeGuide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contributeGuideActionPerformed(evt);
+        createGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createGuideMousePressed(evt);
             }
         });
-        guideManage.add(contributeGuide);
+        guideManage.add(createGuide);
 
         jMenuBar1.add(guideManage);
 
@@ -198,6 +225,17 @@ public class UserAddExperience extends javax.swing.JFrame {
         createExperience.add(jMenuItem1);
 
         listeExperience.setText("Lister");
+        listeExperience.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeExperienceMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                listeExperienceMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listeExperienceMousePressed(evt);
+            }
+        });
         createExperience.add(listeExperience);
 
         jMenuBar1.add(createExperience);
@@ -213,44 +251,64 @@ public class UserAddExperience extends javax.swing.JFrame {
         recommandUser.setText("Recommander");
         jMenuBar1.add(recommandUser);
 
-        setJMenuBar(jMenuBar1);
+        userManage.setText("Exit");
+        userManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userManageMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                userManageMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(userManage);
 
-        bindingGroup.bind();
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void userManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMouseClicked
         // TODO add your handling code here:
-            GestionUtilisateur userManage = new GestionUtilisateur();
-            userManage.setVisible(true);
-            this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_userManageMouseClicked
 
     private void guideManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideManageMouseClicked
         // TODO add your handling code here:
-            GestionGuide guideManage = new GestionGuide();
-            guideManage.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_guideManageMouseClicked
 
     private void createExperienceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createExperienceMouseClicked
         // TODO add your handling code here:
-            GestionExperience experienceManage = new GestionExperience();
-            experienceManage.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_createExperienceMouseClicked
 
     private void newsletterManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMouseClicked
         // TODO add your handling code here:
-            GestionNewsletter newsletterManage = new GestionNewsletter();
+            UserNewsletter newsletterManage = new UserNewsletter();
             newsletterManage.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_newsletterManageMouseClicked
 
-    private void contributeGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contributeGuideActionPerformed
+    private void listeExperienceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_contributeGuideActionPerformed
+            UserListeExperience experienceList = new UserListeExperience();
+            experienceList.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_listeExperienceMouseClicked
+
+    private void listeExperienceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMouseEntered
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_listeExperienceMouseEntered
+
+    private void listeExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMousePressed
+        // TODO add your handling code here:
+        UserListeExperience experienceList = new UserListeExperience();
+        experienceList.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_listeExperienceMousePressed
+
+    private void listeGuideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listeGuideMouseClicked
 
     private void listeGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGuideMousePressed
         // TODO add your handling code here:
@@ -258,6 +316,144 @@ public class UserAddExperience extends javax.swing.JFrame {
         guideList.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_listeGuideMousePressed
+
+    private void createGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createGuideMousePressed
+        // TODO add your handling code here:
+        UserAddGuide guideAdd = new UserAddGuide();
+        guideAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_createGuideMousePressed
+
+    private void userManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMousePressed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_userManageMousePressed
+
+    private void btnTextExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextExperienceActionPerformed
+        // TODO add your handling code here:
+        if(btnTextExperience.isSelected())
+        {
+            textExperience.setEnabled(true);
+            imageUpload.setEnabled(false);
+            addImage.setEnabled(false);
+            videoUpload.setEnabled(false);
+            addVideo.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnTextExperienceActionPerformed
+
+    private void addImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImageActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooserImg = new JFileChooser();
+        chooserImg.showOpenDialog(null);
+        File  img = chooserImg.getSelectedFile();
+        String pathImg = img.getAbsolutePath();
+        imageUpload.setText(pathImg);
+    }//GEN-LAST:event_addImageActionPerformed
+
+    private void addVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVideoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooserImg = new JFileChooser();
+        chooserImg.showOpenDialog(null);
+        File  img = chooserImg.getSelectedFile();
+        String pathImg = img.getAbsolutePath();
+        videoUpload.setText(pathImg);
+    }//GEN-LAST:event_addVideoActionPerformed
+
+    private void btnImgExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgExperienceActionPerformed
+        // TODO add your handling code here:
+        if(btnVideoExperience.isSelected())
+        {
+            textExperience.setEnabled(false);
+            videoUpload.setEnabled(true);
+            addVideo.setEnabled(true);
+            imageUpload.setEnabled(false);
+            addImage.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnImgExperienceActionPerformed
+
+    private void btnVideoExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVideoExperienceActionPerformed
+        // TODO add your handling code here:
+        if(btnVideoExperience.isSelected())
+        {
+            textExperience.setEnabled(false);
+            imageUpload.setEnabled(false);
+            addImage.setEnabled(false);
+            videoUpload.setEnabled(true);
+            addVideo.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnVideoExperienceActionPerformed
+
+    private void btnAddExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExperienceActionPerformed
+        // TODO add your handling code here:
+            JOptionPane jop = new JOptionPane();
+            //|| textExperience.getText() == null || imageUpload.getText() == null || videoUpload.getText() == null
+            if(decalageExperience.getText() == null || depensExperience.getText() == null || startExperience.getDate().toString() == "null-null-null" )
+            {
+                jop.showMessageDialog(null, "Tous les champs sont obligatoire", "Error", JOptionPane.INFORMATION_MESSAGE);        
+            }else{
+                ExperienceDao eDao = ExperienceDao.getInstance();
+                Experience exp     = new Experience();
+                
+                TexteDao tDao = TexteDao.getInstance();
+                ImageDao iDao = ImageDao.getInstance();
+                VideoDao vDao = VideoDao.getInstance();
+                
+                
+                Text t = new Text();
+                Image img = new Image();
+                Video v = new Video();
+
+                exp.setTitle_experience(titleExperience.getText());
+                exp.setDecalage_horaire_experience(Integer.parseInt(decalageExperience.getText()));
+                exp.setDepense_experience(Float.parseFloat(depensExperience.getText()));
+                
+                Date dateFromDateChooser = startExperience.getDate();
+                String dateString = String.format("%1$tY-%1$tm-%1$td", dateFromDateChooser);
+                
+                exp.setStart_experience(dateString);
+                
+                Date endDateFromDateChooser = endExperience.getDate();
+                String endDateString = String.format("%1$tY-%1$tm-%1$td", endDateFromDateChooser);
+                
+                exp.setEnd_experience(endDateString);
+                exp.setNote_experience(noteExperience.getSelectedIndex());
+                exp.setSeason_experience(seasonExperience.getSelectedIndex());
+                exp.setId_country(countryExperience.getSelectedIndex()+1);
+                exp.setId_compte(Login.compteStatic.getId_compte());
+                //exp.setId_compte(1);
+                exp.setStatus_experience(0);
+                
+                if(textExperience.getText() != null)
+                {
+                    t.setDescription_experience(textExperience.getText());
+                    tDao.insertEntity(t);
+                    exp.setId_text(TexteDao.lastInsertedId);
+                    exp.setId_image(0);
+                    exp.setId_video(0);
+                }else if(imageUpload.getText() != null){
+                    img.setPath_url_image(imageUpload.getText());
+                    iDao.insertEntity(img);
+                    exp.setId_image(ImageDao.lastInsertedIdImage);
+                    exp.setId_video(0);
+                    exp.setId_text(0);
+                }else if(videoUpload.getText() != null){
+                    v.setPath_video(videoUpload.getText());
+                    vDao.insertEntity(v);
+                    exp.setId_video(VideoDao.lastInsertedIdVideo);
+                    exp.setId_text(0);
+                    exp.setId_image(0);
+                }
+                
+                try {
+                    System.out.println(exp);
+                    eDao.insertEntity(exp);
+                    jop.showMessageDialog(null,"Ajout expérience avec succé", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (Exception ex) {
+                    jop.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_btnAddExperienceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,11 +498,12 @@ public class UserAddExperience extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addImage;
+    private javax.swing.JButton addVideo;
+    private javax.swing.JButton btnAddExperience;
     private javax.swing.JRadioButton btnImgExperience;
     private javax.swing.JRadioButton btnTextExperience;
     private javax.swing.JRadioButton btnVideoExperience;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JMenuItem contributeGuide;
     private javax.swing.JComboBox countryExperience;
     private javax.swing.JMenu createExperience;
     private javax.swing.JMenuItem createGuide;
@@ -315,13 +512,11 @@ public class UserAddExperience extends javax.swing.JFrame {
     private javax.swing.JLabel depenseExperience;
     private com.toedter.calendar.JDateChooser endExperience;
     private javax.swing.JMenu guideManage;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JTextField imageUpload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -334,11 +529,12 @@ public class UserAddExperience extends javax.swing.JFrame {
     private javax.swing.JMenu newsletterManage;
     private javax.swing.JComboBox noteExperience;
     private javax.swing.JMenu recommandUser;
+    private javax.swing.JComboBox seasonExperience;
     private com.toedter.calendar.JDateChooser startExperience;
     private javax.swing.JTextArea textExperience;
-    private javax.swing.JTextField titreExperience;
+    private javax.swing.JTextField titleExperience;
     private javax.swing.JLabel typeContentExperience;
     private javax.swing.JMenu userManage;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JTextField videoUpload;
     // End of variables declaration//GEN-END:variables
 }

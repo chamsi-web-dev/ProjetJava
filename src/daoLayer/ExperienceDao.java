@@ -45,8 +45,9 @@ public class ExperienceDao implements ICrud<Experience> {
 
     @Override
     public boolean insertEntity(Experience exp) {
-        String req = "INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire_experience`, `start_experience`, `end_experience`, `season_experience`, `depense_experience`, `note_experience`, `id_text`, `id_video`, `id_image`, `id_compte`, `status_experience`) \n"
-                + "VALUES ('', '" + exp.getId_experience() + "', '" + exp.getTitle_experience() + "', '" + exp.getDecalage_horaire_experience() + "', '" + exp.getStart_experience() + "', '" + exp.getEnd_experience() + "', '" + exp.getSeason_experience() + "', '" + exp.getDepense_experience() + "', '" + exp.getNote_experience() + "', '" + exp.getId_text() + "', '" + exp.getId_video() + "', '" + exp.getId_image() + "', '" + exp.getId_compte() + "', '" + exp.getStatus_experience() + "');";
+        String req = "INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire_experience`, `start_experience`, `end_experience`, `season_experience`, `depense_experience`, `note_experience`, `id_text`, `id_video`, `id_image`, `id_compte`, `status_experience`, `id_country`) \n"
+                + "VALUES (null , '" + exp.getTitle_experience() + "', " + exp.getDecalage_horaire_experience() + ", '" + exp.getStart_experience() + "', '" + exp.getEnd_experience() + "', " + exp.getSeason_experience() + ", '" + exp.getDepense_experience() + "', " + exp.getNote_experience() + ", " + exp.getId_text() + ", " + exp.getId_video() + ", " + exp.getId_image() + ", " + exp.getId_compte() + ", " + exp.getStatus_experience() + ", " + exp.getId_country()+ ");";
+        System.out.println(req);
         try {
             experienceStatement.executeUpdate(req);
             return true;
@@ -107,7 +108,7 @@ public class ExperienceDao implements ICrud<Experience> {
             experience.setDecalage_horaire_experience(resultSet.getInt("decalage_horaire_experience"));
             experience.setStart_experience(resultSet.getString("start_experience"));
             experience.setEnd_experience(resultSet.getString("end_experience"));
-            experience.setSeason_experience(resultSet.getString("season_experience"));
+            experience.setSeason_experience(Integer.parseInt(resultSet.getString("season_experience")));
             experience.setDepense_experience(resultSet.getFloat("depense_experience"));
             experience.setNote_experience(resultSet.getInt("note_experience"));
             experience.setId_text(resultSet.getInt("id_text"));
@@ -139,7 +140,7 @@ public class ExperienceDao implements ICrud<Experience> {
                 addExp.setDecalage_horaire_experience(resultSet.getInt("decalage_horaire_experience"));
                 addExp.setStart_experience(resultSet.getString("start_experience"));
                 addExp.setEnd_experience(resultSet.getString("end_experience"));
-                addExp.setSeason_experience(resultSet.getString("season_experience"));
+                addExp.setSeason_experience(Integer.parseInt(resultSet.getString("season_experience")));
                 addExp.setDepense_experience(resultSet.getFloat("depense_experience"));
                 addExp.setNote_experience(resultSet.getInt("note_experience"));
                 addExp.setId_text(resultSet.getInt("id_text"));

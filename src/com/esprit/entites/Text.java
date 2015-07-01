@@ -14,6 +14,9 @@ public class Text {
   private int id_text;
  private String description_experience;
 
+    public Text() {
+    }
+    
     public Text(int id_text, String description_experience) {
         this.id_text = id_text;
         this.description_experience = description_experience;

@@ -16,7 +16,7 @@ public class Experience {
     private int decalage_horaire_experience;
     private String start_experience;
     private String end_experience;
-    private String season_experience;
+    private int season_experience;
     private float depense_experience;
     private int note_experience;
     private int id_text;
@@ -26,7 +26,7 @@ public class Experience {
     private int id_compte;
     private int id_country;
 
-    public Experience(int id_experience, String title_experience, int decalage_horaire_experience, String start_experience, String end_experience, String season_experience, float depense_experience, int note_experience) {
+    public Experience(int id_experience, String title_experience, int decalage_horaire_experience, String start_experience, String end_experience, int season_experience, float depense_experience, int note_experience) {
         this.id_experience = id_experience;
         this.title_experience = title_experience;
         this.decalage_horaire_experience = decalage_horaire_experience;
@@ -80,11 +80,11 @@ public class Experience {
         this.end_experience = end_experience;
     }
 
-    public String getSeason_experience() {
+    public int getSeason_experience() {
         return season_experience;
     }
 
-    public void setSeason_experience(String season_experience) {
+    public void setSeason_experience(int season_experience) {
         this.season_experience = season_experience;
     }
 

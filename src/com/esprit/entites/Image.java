@@ -14,6 +14,9 @@ public class Image {
  private int   id_image;
   private String path_url_image;
 
+    public Image() {
+    }
+
     public Image(int id_image, String path_url_image) {
         this.id_image = id_image;
         this.path_url_image = path_url_image;

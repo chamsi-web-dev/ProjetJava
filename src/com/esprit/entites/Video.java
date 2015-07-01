@@ -15,6 +15,9 @@ public class Video {
   private String title_video;
   private String path_video;
 
+    public Video() {
+    }
+
     public Video(int id_video, String title_video, String path_video) {
         this.id_video = id_video;
         this.title_video = title_video;

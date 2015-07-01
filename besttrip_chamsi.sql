@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 29 Juin 2015 à 02:48
+-- Généré le :  Mer 01 Juillet 2015 à 02:07
 -- Version du serveur :  5.6.24
 -- Version de PHP :  5.6.8
 
@@ -32,19 +32,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `rating_commentaire` int(10) NOT NULL,
   `id_experience` int(11) NOT NULL,
   `status_commentaire` int(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `commentaire`
---
-
-INSERT INTO `commentaire` (`id_commentaire`, `content_commentaire`, `rating_commentaire`, `id_experience`, `status_commentaire`) VALUES
-(5, 'jkhkhkjhkjhkhk', 3, 7, 0),
-(6, 'test content', 3, 7, 1),
-(7, 'test', 2, 7, 1),
-(8, 'qsdsqdqs', 4, 7, 0),
-(9, 'sqdqsdf', 7, 7, 0),
-(10, 'wqsdq', 2, 7, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -152,21 +140,23 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `season_experience` int(2) DEFAULT NULL,
   `depense_experience` float DEFAULT NULL,
   `note_experience` int(10) DEFAULT NULL,
-  `id_text` int(11) NOT NULL DEFAULT '0',
-  `id_video` int(11) NOT NULL DEFAULT '0',
-  `id_image` int(11) NOT NULL DEFAULT '0',
-  `id_compte` int(20) NOT NULL,
+  `id_text` int(11) DEFAULT NULL,
+  `id_video` int(11) DEFAULT NULL,
+  `id_image` int(11) DEFAULT NULL,
+  `id_compte` int(20) NOT NULL DEFAULT '0',
   `id_country` int(11) NOT NULL,
   `status_experience` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `experience`
 --
 
 INSERT INTO `experience` (`id_experience`, `title_experience`, `decalage_horaire_experience`, `start_experience`, `end_experience`, `season_experience`, `depense_experience`, `note_experience`, `id_text`, `id_video`, `id_image`, `id_compte`, `id_country`, `status_experience`) VALUES
-(6, 'Experience 2', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1),
-(7, 'Experience 3', 3, '2015-06-21', '2015-06-24', 3, 100, 5, 1, 1, 1, 1, 3, 1);
+(9, 'skqmdlkqmdlqskmldk', 5, '2015-07-01', '2015-07-31', 3, 99, 7, 14, 0, 0, 1, 0, 0),
+(10, 'kljkjkjklljk', 5, '2015-07-01', '2015-07-31', 3, 9999, 7, 19, 0, 0, 1, 1, 0),
+(11, '§/§/!:§/', 5, '2015-07-04', '2015-07-29', 1, 96666, 5, 20, 0, 0, 1, 4, 0),
+(12, 'lkmlklmk', 12, '2015-07-05', '2015-07-14', 2, 3666, 3, 21, 0, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `guide` (
   `status_guide` int(2) DEFAULT NULL,
   `id_country` int(11) NOT NULL,
   `id_compte` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `guide`
@@ -224,7 +214,7 @@ INSERT INTO `guide` (`id_guide`, `name_guide`, `description_guide`, `note_guide`
 CREATE TABLE IF NOT EXISTS `image` (
   `id_image` int(11) NOT NULL,
   `path_url_image` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `image`
@@ -267,15 +257,34 @@ CREATE TABLE IF NOT EXISTS `recommander` (
 CREATE TABLE IF NOT EXISTS `text` (
   `id_text` int(11) NOT NULL,
   `description_experience` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `text`
 --
 
 INSERT INTO `text` (`id_text`, `description_experience`) VALUES
-(1, 'Description expérience 1'),
-(2, 'Description expérience 2');
+(1, 'SQQDQSDSQDSQD'),
+(2, 'qssqdqsdsqddqsdqs'),
+(3, 'sqsqsqdsqdsqdsqdsqd'),
+(4, ''),
+(5, 'SQQSDQSDQSSDSQDDSQDSQDQS'),
+(6, 'QQSDSQQSDSQDSQDSQDQS'),
+(7, 'qcqsdqssqdsqdqsdsq'),
+(8, 'wcxxwcwxcxwcxwcxwcwx'),
+(9, 'sdqsqsdqsdqsdqsd'),
+(10, 'test test test '),
+(11, 'sqqsqsdsqdsqdsqdsq'),
+(12, 'xqsdsqdqsdqsdqsdsq'),
+(13, 'jkljqklqjlqsjdlksqjdklqsjdsqdqsdq'),
+(14, '<wxw<xw<xw<xw<xcfgdfgsddfdsfsdfds'),
+(15, 'test test test'),
+(16, 'test test test test test '),
+(17, 'qsdqsqssqdsqdsqdsqdsqd'),
+(18, 'tes terst terst testy'),
+(19, 'kjhkjhjkhkhjkhkjhk'),
+(20, ''),
+(21, '');
 
 -- --------------------------------------------------------
 
@@ -287,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   `id_video` int(11) NOT NULL,
   `title_video` varchar(45) DEFAULT NULL,
   `path_video` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `video`
@@ -355,7 +364,7 @@ ALTER TABLE `country`
 -- Index pour la table `experience`
 --
 ALTER TABLE `experience`
-  ADD PRIMARY KEY (`id_experience`,`id_text`,`id_video`,`id_image`,`id_compte`), ADD KEY `fk_Experience_Text1_idx` (`id_text`), ADD KEY `fk_Experience_Video1_idx` (`id_video`), ADD KEY `fk_Experience_Image1_idx` (`id_image`), ADD KEY `fk_Experience_Compte1_idx` (`id_compte`), ADD KEY `country_experience` (`id_country`);
+  ADD PRIMARY KEY (`id_experience`,`id_compte`), ADD KEY `fk_Experience_Compte1_idx` (`id_compte`), ADD KEY `country_experience` (`id_country`);
 
 --
 -- Index pour la table `flux`
@@ -413,7 +422,7 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id_commentaire` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_commentaire` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `compte`
 --
@@ -428,7 +437,7 @@ ALTER TABLE `contribution`
 -- AUTO_INCREMENT pour la table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `flux`
 --
@@ -438,7 +447,22 @@ ALTER TABLE `flux`
 -- AUTO_INCREMENT pour la table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_guide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `text`
+--
+ALTER TABLE `text`
+  MODIFY `id_text` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT pour la table `video`
+--
+ALTER TABLE `video`
+  MODIFY `id_video` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
@@ -460,10 +484,7 @@ ADD CONSTRAINT `FK_ID_GUIDE` FOREIGN KEY (`id_guide`) REFERENCES `guide` (`id_gu
 -- Contraintes pour la table `experience`
 --
 ALTER TABLE `experience`
-ADD CONSTRAINT `fk_Experience_Compte` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id_compte`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Experience_Image` FOREIGN KEY (`id_image`) REFERENCES `image` (`id_image`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `fk_Experience_Text1` FOREIGN KEY (`id_text`) REFERENCES `text` (`id_text`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `fk_Experience_Video1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id_video`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_Experience_Compte` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id_compte`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `guide`
