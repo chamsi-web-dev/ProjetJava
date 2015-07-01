@@ -158,6 +158,31 @@ public class CommentaireDao implements ICrud<Commentaire>{
         return listCommentaire;
     }
     
+    public List<Commentaire> displayByExperience(int id) {
+        List<Commentaire> listCommentaire = new ArrayList<>();
+        String req          = "SELECT * FROM `commentaire` where id_experience = "+id+" ORDER BY id_commentaire";
+        System.out.println(req);
+        try {
+            resultSet = commentaireStatement.executeQuery(req);
+            
+            while (resultSet.next()) {
+                Commentaire addCommentaire = new Commentaire();
+
+                addCommentaire.setIdCommentaire(resultSet.getInt("id_commentaire"));
+                addCommentaire.setContentCommentaire(resultSet.getString("content_commentaire"));
+                addCommentaire.setRatingCommentaire(resultSet.getInt("rating_commentaire"));
+                addCommentaire.setStatusCommentaire(resultSet.getInt("status_commentaire"));
+                
+                listCommentaire.add(addCommentaire);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentaireDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return listCommentaire;
+    }
+    
     public void disableCommentaire(int id, boolean active) {
         String req = "UPDATE `commentaire` SET `status_commentaire` = "+active+" WHERE `id_commentaire` = "+id;
 

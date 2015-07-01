@@ -5,7 +5,19 @@
  */
 package view;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import com.esprit.entites.Compte;
+import daoLayer.CompteDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+/*import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeBodyPart;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeMultipart;
 import com.sun.xml.internal.ws.wsdl.writer.document.Message;
@@ -20,16 +32,17 @@ import javax.mail.Multipart;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
-import org.eclipse.persistence.sessions.Session;
+//import org.eclipse.persistence.sessions.Session;
 import static org.omg.CORBA.ORB.init;
-import sun.rmi.transport.Transport;
+import sun.rmi.transport.Transport;*/
 
 /**
  *
  * @author mac
  */
 public class GestionNewsletter extends javax.swing.JFrame {
-
+    List<Compte> cListe;
+    String to;
     /**
      * Creates new form TableauDeBord
      */
@@ -190,85 +203,84 @@ public class GestionNewsletter extends javax.swing.JFrame {
 
     private void sendNewsletterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendNewsletterActionPerformed
         // TODO add your handling code here:
-        
-        final String username = "besttripsuccess@esprit.tn";
-        final String password = "esprit2015";
-        String obj = objetNewsletter.getText();
-        String mail = contentNewsletter.getText();
-        NewsLetterDAO NDAO;
-        NewsLetter newsl;
-        String to = ReciverMail();
-        
-        if(obj.equals(""))
+        /*
+            final String username = "besttripsuccess@esprit.tn";
+            final String password = "esprit2015";
+        */
+        CompteDao cDao = CompteDao.getInstance();
+        if(allClient.isSelected())
         {
-          JOptionPane.showMessageDialog(null, "Inserez un Objet !!!");  
+            cListe =  cDao.displayAllEntity();
+        } 
+        else{
+            to = otherNewsletter.getText();
         }
-        else if (mail.equals(""))
-        {
-         JOptionPane.showMessageDialog(null, "Inserez le contenu du email ");   
-        }
-        else
-        {
-        if (!to.equals("")) {
-            Properties props = new Properties();
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.port", "587");
-            Session session = Session.getInstance(props,
-                    new javax.mail.Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(username, password);
-                        }
-                    });
+        
+        // Recipient's email ID needs to be mentioned.
+            //String to = "c@gmail.com";
+
+        // Sender's email ID needs to be mentioned
+            String from = "web@gmail.com";
+
+        // Assuming you are sending email from localhost
+            String host = "localhost";
+
+        // Get system properties
+            Properties properties = System.getProperties();
+
+        // Setup mail server
+            properties.setProperty("mail.smtp.host", host);
+
+        // Get the default Session object.
+            Session session = Session.getDefaultInstance(properties);
+
+        // Create a default MimeMessage object.
+             MimeMessage message = new MimeMessage(session);
+
+           // Set From: header field of the header.
             try {
-                NDAO = (NewsLetterDAO) NewsLetterDAO.getInstance();
-                newsl = new NewsLetter();
+                message.setFrom(new InternetAddress(from));
+                if(to == ""){
+                    for (Iterator<Compte> iterator = cListe.iterator(); iterator.hasNext();) {
+                        Compte next = iterator.next();
+                        to = next.getEmail_compte();
+                        // Set To: header field of the header.
+                            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-                try {
-                        Message message = new MimeMessage(session);
-                        Multipart multipart = new MimeMultipart();
-                        message.setSubject(obj);
-                        MimeBodyPart messageBodyPart = new MimeBodyPart();
-                        messageBodyPart.setText(mail);
-                        multipart.addBodyPart(messageBodyPart);
-                        newsl.setMessage(mail);
-                        newsl.setSujet(obj);
+                       // Set Subject: header field
+                            message.setSubject(objetNewsletter.getText());
 
-                        message.setFrom(new InternetAddress(username));
-                        message.setRecipients(Message.RecipientType.TO,
-                                InternetAddress.parse(to));
-                        for (int i = 0; i < path_list.size(); i++) {
-                            messageBodyPart = new MimeBodyPart();
-                            DataSource sourece = new FileDataSource((String) path_list.get(i));
-                            messageBodyPart.setDataHandler(new DataHandler(sourece));
-                            messageBodyPart.setFileName((String) name_list.get(i));
-                            multipart.addBodyPart(messageBodyPart);
+                       // Now set the actual message
+                            message.setText(contentNewsletter.getText());
+                            System.out.println(message.toString());
 
-                        }
-                        messageBodyPart = new MimeBodyPart();
+                       // Send message
+                            Transport.send(message);
+                            System.out.println("Newsletter envoyé à "+next.getNom_compte()+" "+next.getPrenom_compte()+"....");
 
-                        try {
-                            buildMessage(mail, messageBodyPart, obj);
-                        } catch (IOException ex) {
+                    }
+                }else{
+                    // Set To: header field of the header.
+                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-                             System.out.println(ex.getMessage());
-                        }
-                        multipart.addBodyPart(messageBodyPart);
-                        message.setContent(multipart);
+                   // Set Subject: header field
+                        message.setSubject(objetNewsletter.getText());
 
+                   // Now set the actual message
+                        message.setText(contentNewsletter.getText());
+                        System.out.println(message.toString());
+
+                   // Send message
                         Transport.send(message);
-                        init();
-                        JOptionPane.showMessageDialog(null, "message envoyer");
-                   
-                } catch (MessagingException e) {
-                    throw new RuntimeException(e);
+                        System.out.println("Newsletter envoyé à "+to+"....");
                 }
-            } catch (SQLException ex) {
-
-                 System.out.println(ex.getMessage());
+                
+           
+                
+            } catch (Exception e) {
+                System.out.println("Erreur : "+e.getMessage());
             }
-        }}
+        
     }//GEN-LAST:event_sendNewsletterActionPerformed
 
     private void rssManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rssManageMouseClicked

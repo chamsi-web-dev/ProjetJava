@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.esprit.entites.Compte;
 import daoLayer.CompteDao;
 
 /**
@@ -18,6 +19,10 @@ public class UserNewsletter extends javax.swing.JFrame {
      */
     public UserNewsletter() {
         initComponents();
+        CompteDao cDao = CompteDao.getInstance();
+        
+        if(Login.compteStatic.getNewsletter_compte() == 0)
+            abonnementNewsletter.setSelected(true);
     }
 
     /**
@@ -36,9 +41,8 @@ public class UserNewsletter extends javax.swing.JFrame {
         guideManage = new javax.swing.JMenu();
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
-        contributeGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        creerExperience = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
@@ -85,15 +89,12 @@ public class UserNewsletter extends javax.swing.JFrame {
         guideManage.add(listeGuide);
 
         createGuide.setText("Créer");
-        guideManage.add(createGuide);
-
-        contributeGuide.setText("Contribuer");
-        contributeGuide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contributeGuideActionPerformed(evt);
+        createGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createGuideMousePressed(evt);
             }
         });
-        guideManage.add(contributeGuide);
+        guideManage.add(createGuide);
 
         jMenuBar1.add(guideManage);
 
@@ -104,8 +105,18 @@ public class UserNewsletter extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Créer");
-        createExperience.add(jMenuItem1);
+        creerExperience.setText("Créer");
+        creerExperience.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                creerExperienceMousePressed(evt);
+            }
+        });
+        creerExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creerExperienceActionPerformed(evt);
+            }
+        });
+        createExperience.add(creerExperience);
 
         listeExperience.setText("Lister");
         listeExperience.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,6 +130,11 @@ public class UserNewsletter extends javax.swing.JFrame {
                 listeExperienceMousePressed(evt);
             }
         });
+        listeExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listeExperienceActionPerformed(evt);
+            }
+        });
         createExperience.add(listeExperience);
 
         jMenuBar1.add(createExperience);
@@ -127,6 +143,9 @@ public class UserNewsletter extends javax.swing.JFrame {
         newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newsletterManageMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                newsletterManageMousePressed(evt);
             }
         });
         jMenuBar1.add(newsletterManage);
@@ -167,10 +186,6 @@ public class UserNewsletter extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_newsletterManageMouseClicked
 
-    private void contributeGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contributeGuideActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contributeGuideActionPerformed
-
     private void listeExperienceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMouseClicked
         // TODO add your handling code here:
             UserListeExperience experienceList = new UserListeExperience();
@@ -202,6 +217,7 @@ public class UserNewsletter extends javax.swing.JFrame {
 
     private void abonnementNewsletterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abonnementNewsletterActionPerformed
         // TODO add your handling code here:
+            
     }//GEN-LAST:event_abonnementNewsletterActionPerformed
 
     private void validateNewsletterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateNewsletterActionPerformed
@@ -209,6 +225,35 @@ public class UserNewsletter extends javax.swing.JFrame {
             CompteDao cDao = CompteDao.getInstance();
             cDao.abonnementNewsletter(2, true);
     }//GEN-LAST:event_validateNewsletterActionPerformed
+
+    private void createGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createGuideMousePressed
+        // TODO add your handling code here:
+        UserAddGuide guideAdd = new UserAddGuide();
+        guideAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_createGuideMousePressed
+
+    private void creerExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerExperienceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creerExperienceActionPerformed
+
+    private void listeExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeExperienceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listeExperienceActionPerformed
+
+    private void creerExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creerExperienceMousePressed
+        // TODO add your handling code here:
+        UserAddExperience experienceAdd = new UserAddExperience();
+        experienceAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_creerExperienceMousePressed
+
+    private void newsletterManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMousePressed
+        // TODO add your handling code here:
+            UserNewsletter newsletterManage = new UserNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMousePressed
 
     /**
      * @param args the command line arguments
@@ -250,13 +295,12 @@ public class UserNewsletter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox abonnementNewsletter;
-    private javax.swing.JMenuItem contributeGuide;
     private javax.swing.JMenu createExperience;
     private javax.swing.JMenuItem createGuide;
+    private javax.swing.JMenuItem creerExperience;
     private javax.swing.JMenu guideManage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem listeExperience;
     private javax.swing.JMenuItem listeGuide;
     private javax.swing.JMenu newsletterManage;

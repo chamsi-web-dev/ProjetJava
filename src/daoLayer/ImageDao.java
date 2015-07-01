@@ -64,7 +64,7 @@ public class ImageDao {
         }
     }
 
-    public Image displayEntityById(int id) {
+    public String displayEntityById(int id) {
         String req = "SELECT * FROM image WHERE id_image="+id;
         Image image = new Image();
 
@@ -72,7 +72,7 @@ public class ImageDao {
             resultImage = imageStatement.executeQuery(req);
             resultImage.next();
             
-            image.setPath_url_image(resultImage.getString("path_url_image"));
+            return resultImage.getString("path_url_image");
             
         } catch (SQLException ex) {
             JOptionPane jop = new JOptionPane();
@@ -80,7 +80,6 @@ public class ImageDao {
             return null;
         }
         
-        return image;
     }
 
     

@@ -64,7 +64,7 @@ public class VideoDao {
         }
     }
 
-    public Video displayEntityById(int id) {
+    public String displayEntityById(int id) {
         String req = "SELECT * FROM video WHERE id_video="+id;
         Video video = new Video();
 
@@ -72,7 +72,7 @@ public class VideoDao {
             resultVideo = videoStatement.executeQuery(req);
             resultVideo.next();
             
-            video.setPath_video(resultVideo.getString("path_video"));
+            return resultVideo.getString("path_video");
             
         } catch (SQLException ex) {
             JOptionPane jop = new JOptionPane();
@@ -80,7 +80,6 @@ public class VideoDao {
             return null;
         }
         
-        return video;
     }
 
 }

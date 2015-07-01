@@ -51,8 +51,8 @@ public class CompteDao  implements ICrud<Compte>{
     
     @Override
     public boolean insertEntity(Compte compte) {
-        String req = "INSERT INTO `Compte` (`nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`) \n" +
-                     "VALUES ('"+compte.getNom_compte()+"', '"+compte.getPrenom_compte()+"', '"+compte.getEmail_compte()+"', '"+compte.getDob_compte()+"', '"+compte.getCountry_compte()+"', '"+compte.getLogin_compte()+"', '"+compte.getPwd_compte()+"', '"+compte.getType_compte()+"', '"+compte.getStatus_compte()+"');";
+        String req = "INSERT INTO `Compte` (`nom_compte`, `prenom_compte`, `email_compte`, `dob_compte`, `country_compte`, `login_compte`, `pwd_compte`, `type_compte`, `status_compte`, `newsletter_compte`) \n" +
+                     "VALUES ('"+compte.getNom_compte()+"', '"+compte.getPrenom_compte()+"', '"+compte.getEmail_compte()+"', '"+compte.getDob_compte()+"', '"+compte.getCountry_compte()+"', '"+compte.getLogin_compte()+"', '"+compte.getPwd_compte()+"', '"+compte.getType_compte()+"', '"+compte.getStatus_compte()+"', '"+compte.getNewsletter_compte()+"');";
 
         try {
             compteStatement.executeUpdate(req);

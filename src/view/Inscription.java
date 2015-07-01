@@ -256,7 +256,8 @@ public class Inscription extends javax.swing.JFrame {
             compte.setCountry_compte(countryCompte.getSelectedIndex());
             compte.setLogin_compte(usernameCompte.getText());
             compte.setPwd_compte(pwdCompte.getText());
-            compte.setStatus_compte(1);
+            compte.setEmail_compte(emailCompte.getText());
+            compte.setStatus_compte(0);
             compte.setType_compte("Utilisateur");
 
             if(cDao.insertEntity(compte))

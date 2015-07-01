@@ -29,7 +29,7 @@ public class CommentaireAdapter extends AbstractTableModel {
 
     public CommentaireAdapter() {
         commentaireDao = CommentaireDao.getInstance();
-        commentaires = commentaireDao.displayAllEntity();
+        commentaires = commentaireDao.displayByExperience(UserListeExperience.experiencStatic.getId_experience());
     }
 
     @Override
@@ -51,9 +51,11 @@ public class CommentaireAdapter extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return commentaires.get(rowIndex).getContentCommentaire();
+                if(commentaires.get(rowIndex).getContentCommentaire() != null)
+                    return commentaires.get(rowIndex).getContentCommentaire();
             case 1:
-                return commentaires.get(rowIndex).getRatingCommentaire()+"/10";
+                if(commentaires.get(rowIndex).getRatingCommentaire() != 0)
+                    return commentaires.get(rowIndex).getRatingCommentaire()+"/10";
             case 2:
                 if(commentaires.get(rowIndex).getStatusCommentaire() == 1)
                     return "Activé";

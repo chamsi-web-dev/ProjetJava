@@ -31,7 +31,8 @@ public class ConsulterExperience extends javax.swing.JFrame {
         this.end_experience.setText(GestionExperience.end_experience);
         this.end_experience.disable();
         
-        this.season_experience.setText(GestionExperience.season_experience);
+        //this.season_experience.setText(GestionExperience.season_experience);
+        this.season_experience.setText("sdsqdsq");
         this.season_experience.disable();
         
         this.depense_experience.setText(Float.toString(GestionExperience.depense_experience));

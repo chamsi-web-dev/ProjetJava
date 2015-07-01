@@ -8,7 +8,6 @@ package view;
 import com.esprit.entites.Commentaire;
 import daoLayer.CommentaireDao;
 import daoLayer.ExperienceDao;
-import java.util.List;
 import javax.swing.JOptionPane;
 import tables.CommentaireAdapter;
 
@@ -38,19 +37,19 @@ public class userConsulterExperience extends javax.swing.JFrame {
            
             String season ;
             switch(UserListeExperience.experiencStatic.getSeason_experience()){
-               case "1":
+               case 1:
                    season = "Hiver";
                    break;
                    
-               case "2":
+               case 2:
                    season = "Printemps";
                    break;
                    
-               case "3":
+               case 3:
                    season = "Automne";
                    break;
                    
-               case "4":
+               case 4:
                    season = "Ete";
                    break;
                 
@@ -232,7 +231,7 @@ public class userConsulterExperience extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(contentExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -333,7 +332,7 @@ public class userConsulterExperience extends javax.swing.JFrame {
         commentaireTableModel.setModel(new CommentaireAdapter());
         jScrollPane3.setViewportView(commentaireTableModel);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1120, -1));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 1120, 310));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/http-www.bhutantravelshop.com-wp-content-uploads-2014-07-lt.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));

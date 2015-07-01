@@ -25,11 +25,13 @@ public class Compte {
   private String pwd_compte;
   private String type_compte;
   private int status_compte;
+  private int newsletter_compte;
+  
   private List<Experience>experience=new ArrayList<Experience>();
   private List<Guide>guide= new ArrayList<Guide>();
   private List<Recommander>recommander=new ArrayList<Recommander>();
 
-    public Compte(int id_compte, String nom_compte, String prenom_compte, String email_compte, String dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte) {
+    public Compte(int id_compte, String nom_compte, String prenom_compte, String email_compte, String dob_compte, int country_compte, String login_compte, String pwd_compte, String type_compte, int status_compte, int newsletter_compte) {
         this.id_compte = id_compte;
         this.nom_compte = nom_compte;
         this.prenom_compte = prenom_compte;
@@ -40,8 +42,8 @@ public class Compte {
         this.pwd_compte = pwd_compte;
         this.type_compte = type_compte;
         this.status_compte = status_compte;
+        this.newsletter_compte = newsletter_compte;
     }
-
 
     public Compte() {
     }
@@ -151,9 +153,17 @@ public class Compte {
         this.email_compte = email_compte;
     }
 
-    @Override
-    public String toString() {
-        return "Compte{" + "id_compte=" + id_compte + ", nom_compte=" + nom_compte + ", prenom_compte=" + prenom_compte + ", email_compte=" + email_compte + ", dob_compte=" + dob_compte + ", country_compte=" + country_compte + ", login_compte=" + login_compte + ", pwd_compte=" + pwd_compte + ", type_compte=" + type_compte + ", status_compte=" + status_compte + ", experience=" + experience + ", guide=" + guide + ", recommander=" + recommander + '}';
+    public int getNewsletter_compte() {
+        return newsletter_compte;
     }
 
+    public void setNewsletter_compte(int newsletter_compte) {
+        this.newsletter_compte = newsletter_compte;
+    }
+
+    @Override
+    public String toString() {
+        return "Compte{" + "id_compte=" + id_compte + ", nom_compte=" + nom_compte + ", prenom_compte=" + prenom_compte + ", email_compte=" + email_compte + ", dob_compte=" + dob_compte + ", country_compte=" + country_compte + ", login_compte=" + login_compte + ", pwd_compte=" + pwd_compte + ", type_compte=" + type_compte + ", status_compte=" + status_compte + ", newsletter_compte=" + newsletter_compte + ", experience=" + experience + ", guide=" + guide + ", recommander=" + recommander + '}';
+    }
+    
 }

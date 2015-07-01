@@ -14,10 +14,11 @@ import javax.swing.table.AbstractTableModel;
 
 public class ExperienceAdapter extends AbstractTableModel {
     
-    String[] headers     = {"Titre", "Décalage horaire", "Date de début", "Date de fin", "Saison", "Dépense", "Note (/10)", "Pays", "Contenu", "Status"};
+    String[] headers     = {"Titre", "Décalage horaire", "Date de début", "Date de fin", "Saison", "Dépense", "Note (/10)", "Pays", "Type", "Status"};
     List<Experience> experiences = new ArrayList<>();
     ExperienceDao experienceDao;
-    
+                    String content;
+
     public List<Experience> getExperiences() {
         return experiences;
     }
@@ -62,7 +63,30 @@ public class ExperienceAdapter extends AbstractTableModel {
             case 3:
                 return experiences.get(rowIndex).getEnd_experience();
             case 4:
-                return experiences.get(rowIndex).getSeason_experience();
+                //return experiences.get(rowIndex).getSeason_experience();
+                String season; 
+                switch(experiences.get(rowIndex).getSeason_experience()){
+                    case 1:
+                        season = "Hiver";
+                        break;
+
+                    case 2:
+                        season = "Printemps";
+                        break;
+
+                    case 3:
+                        season = "Automne";
+                        break;
+
+                    case 4:
+                        season = "Ete";
+                        break;
+
+                     default:
+                         season = "";
+                         break;
+                }
+            return season;
             case 5:
                 return experiences.get(rowIndex).getDepense_experience();
             case 6:
@@ -70,7 +94,14 @@ public class ExperienceAdapter extends AbstractTableModel {
             case 7:
                 return experienceDao.getCountryById(experiences.get(rowIndex).getId_country());
             case 8:
-                return "Non implémenter encore";
+                if(experiences.get(rowIndex).getId_text() != 0){
+                    content =  "Texte";
+                }else if(experiences.get(rowIndex).getId_image()!= 0){
+                    content =  "Image";
+                }else if(experiences.get(rowIndex).getId_video()!= 0){
+                    content =  "Vidéo";
+                }
+            return content;
             case 9:
                 return experiences.get(rowIndex).getStatus_experience();
             default:

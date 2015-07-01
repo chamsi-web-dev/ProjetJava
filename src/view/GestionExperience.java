@@ -22,7 +22,7 @@ public class GestionExperience extends javax.swing.JFrame {
     public static int decalage_horaire_experience;
     public static String start_experience;
     public static String end_experience;
-    public static String season_experience;
+    public static int season_experience;
     public static float depense_experience;
     public static int note_experience;
     public static String text_experience;
@@ -222,7 +222,7 @@ public class GestionExperience extends javax.swing.JFrame {
                 } catch (Exception e) {
                     jop.showMessageDialog(null, e.getMessage(), "Sucess", JOptionPane.ERROR_MESSAGE);
                 }
-               experiencesTableModel.setModel(new GuideAdapter());
+               experiencesTableModel.setModel(new ExperienceAdapter());
             }
     }//GEN-LAST:event_deleteExperienceActionPerformed
 

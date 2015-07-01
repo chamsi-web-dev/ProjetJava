@@ -63,15 +63,15 @@ public class TexteDao {
         }
     }
 
-    public Text displayEntityById(int id) {
+    public String displayEntityById(int id) {
         String req = "SELECT * FROM text WHERE id_text="+id;
         Text text = new Text();
-
+        
         try {
             resultText = textStatement.executeQuery(req);
             resultText.next();
-            
-            text.setDescription_experience(resultText.getString("description_experience"));
+            System.out.println(resultText.getString("description_experience"));
+            return resultText.getString("description_experience");
             
         } catch (SQLException ex) {
             JOptionPane jop = new JOptionPane();
@@ -79,7 +79,6 @@ public class TexteDao {
             return null;
         }
         
-        return text;
     }
 
     

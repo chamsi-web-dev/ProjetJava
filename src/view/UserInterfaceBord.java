@@ -34,7 +34,7 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnCreerExperience = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
@@ -65,6 +65,11 @@ public class UserInterfaceBord extends javax.swing.JFrame {
                 listeGuideMousePressed(evt);
             }
         });
+        listeGuide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listeGuideActionPerformed(evt);
+            }
+        });
         guideManage.add(listeGuide);
 
         createGuide.setText("Créer");
@@ -84,8 +89,13 @@ public class UserInterfaceBord extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Créer");
-        createExperience.add(jMenuItem1);
+        btnCreerExperience.setText("Créer");
+        btnCreerExperience.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCreerExperienceMousePressed(evt);
+            }
+        });
+        createExperience.add(btnCreerExperience);
 
         listeExperience.setText("Lister");
         listeExperience.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,10 +118,18 @@ public class UserInterfaceBord extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newsletterManageMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                newsletterManageMousePressed(evt);
+            }
         });
         jMenuBar1.add(newsletterManage);
 
         recommandUser.setText("Recommander");
+        recommandUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                recommandUserMousePressed(evt);
+            }
+        });
         jMenuBar1.add(recommandUser);
 
         userManage.setText("Exit");
@@ -192,6 +210,31 @@ public class UserInterfaceBord extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_userManageMousePressed
 
+    private void btnCreerExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreerExperienceMousePressed
+        // TODO add your handling code here:
+        UserAddExperience experienceAdd = new UserAddExperience();
+        experienceAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreerExperienceMousePressed
+
+    private void listeGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeGuideActionPerformed
+        // TODO add your handling code here:
+        UserListeGuide guideAdd = new UserListeGuide();
+        guideAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_listeGuideActionPerformed
+
+    private void newsletterManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMousePressed
+        // TODO add your handling code here:
+            UserNewsletter newsletterManage = new UserNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMousePressed
+
+    private void recommandUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recommandUserMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recommandUserMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -229,13 +272,13 @@ public class UserInterfaceBord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnCreerExperience;
     private javax.swing.JMenu createExperience;
     private javax.swing.JMenuItem createGuide;
     private javax.swing.JMenu guideManage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem listeExperience;
     private javax.swing.JMenuItem listeGuide;
     private javax.swing.JMenu newsletterManage;

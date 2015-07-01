@@ -47,7 +47,7 @@ public class UserListeGuide extends javax.swing.JFrame {
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnCreerExperience = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
@@ -108,6 +108,11 @@ public class UserListeGuide extends javax.swing.JFrame {
         guideManage.add(listeGuide);
 
         createGuide.setText("Créer");
+        createGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createGuideMousePressed(evt);
+            }
+        });
         guideManage.add(createGuide);
 
         jMenuBar1.add(guideManage);
@@ -119,13 +124,13 @@ public class UserListeGuide extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Créer");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCreerExperience.setText("Créer");
+        btnCreerExperience.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem1MousePressed(evt);
+                btnCreerExperienceMousePressed(evt);
             }
         });
-        createExperience.add(jMenuItem1);
+        createExperience.add(btnCreerExperience);
 
         listeExperience.setText("Lister");
         listeExperience.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,6 +147,9 @@ public class UserListeGuide extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newsletterManageMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                newsletterManageMousePressed(evt);
+            }
         });
         jMenuBar1.add(newsletterManage);
 
@@ -152,6 +160,9 @@ public class UserListeGuide extends javax.swing.JFrame {
         userManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userManageMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                userManageMousePressed(evt);
             }
         });
         jMenuBar1.add(userManage);
@@ -204,9 +215,12 @@ public class UserListeGuide extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_listeGuideMousePressed
 
-    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
+    private void btnCreerExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreerExperienceMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1MousePressed
+        UserAddExperience experienceAdd = new UserAddExperience();
+        experienceAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreerExperienceMousePressed
 
     private void listeExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeExperienceMousePressed
         // TODO add your handling code here:
@@ -226,6 +240,25 @@ public class UserListeGuide extends javax.swing.JFrame {
             userGuideTableModel.setModel(new UserGuideAdapter(countryGuide.getSelectedIndex()+1));
         }
     }//GEN-LAST:event_countryGuideActionPerformed
+
+    private void createGuideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createGuideMousePressed
+        // TODO add your handling code here:
+        UserAddGuide guideAdd = new UserAddGuide();
+        guideAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_createGuideMousePressed
+
+    private void newsletterManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMousePressed
+        // TODO add your handling code here:
+            UserNewsletter newsletterManage = new UserNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMousePressed
+
+    private void userManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManageMousePressed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_userManageMousePressed
 
     /**
      * @param args the command line arguments
@@ -270,6 +303,7 @@ public class UserListeGuide extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnCreerExperience;
     private javax.swing.JButton consulterGuide;
     private javax.swing.JComboBox countryGuide;
     private javax.swing.JMenu createExperience;
@@ -279,7 +313,6 @@ public class UserListeGuide extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem listeExperience;
     private javax.swing.JMenuItem listeGuide;

@@ -73,7 +73,7 @@ public class UserAddExperience extends javax.swing.JFrame {
         listeGuide = new javax.swing.JMenuItem();
         createGuide = new javax.swing.JMenuItem();
         createExperience = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnCreerExperience = new javax.swing.JMenuItem();
         listeExperience = new javax.swing.JMenuItem();
         newsletterManage = new javax.swing.JMenu();
         recommandUser = new javax.swing.JMenu();
@@ -221,8 +221,13 @@ public class UserAddExperience extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Créer");
-        createExperience.add(jMenuItem1);
+        btnCreerExperience.setText("Créer");
+        btnCreerExperience.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCreerExperienceMousePressed(evt);
+            }
+        });
+        createExperience.add(btnCreerExperience);
 
         listeExperience.setText("Lister");
         listeExperience.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -244,6 +249,9 @@ public class UserAddExperience extends javax.swing.JFrame {
         newsletterManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newsletterManageMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                newsletterManageMousePressed(evt);
             }
         });
         jMenuBar1.add(newsletterManage);
@@ -417,7 +425,7 @@ public class UserAddExperience extends javax.swing.JFrame {
                 
                 exp.setEnd_experience(endDateString);
                 exp.setNote_experience(noteExperience.getSelectedIndex());
-                exp.setSeason_experience(seasonExperience.getSelectedIndex());
+                exp.setSeason_experience(seasonExperience.getSelectedIndex()+1);
                 exp.setId_country(countryExperience.getSelectedIndex()+1);
                 exp.setId_compte(Login.compteStatic.getId_compte());
                 //exp.setId_compte(1);
@@ -454,6 +462,20 @@ public class UserAddExperience extends javax.swing.JFrame {
                 }
             }
     }//GEN-LAST:event_btnAddExperienceActionPerformed
+
+    private void btnCreerExperienceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreerExperienceMousePressed
+        // TODO add your handling code here:
+        UserAddExperience experienceAdd = new UserAddExperience();
+        experienceAdd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreerExperienceMousePressed
+
+    private void newsletterManageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsletterManageMousePressed
+        // TODO add your handling code here:
+            UserNewsletter newsletterManage = new UserNewsletter();
+            newsletterManage.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_newsletterManageMousePressed
 
     /**
      * @param args the command line arguments
@@ -501,6 +523,7 @@ public class UserAddExperience extends javax.swing.JFrame {
     private javax.swing.JButton addImage;
     private javax.swing.JButton addVideo;
     private javax.swing.JButton btnAddExperience;
+    private javax.swing.JMenuItem btnCreerExperience;
     private javax.swing.JRadioButton btnImgExperience;
     private javax.swing.JRadioButton btnTextExperience;
     private javax.swing.JRadioButton btnVideoExperience;
@@ -522,7 +545,6 @@ public class UserAddExperience extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem listeExperience;
     private javax.swing.JMenuItem listeGuide;

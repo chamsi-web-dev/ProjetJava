@@ -24,6 +24,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cr&#xe9;er"/>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="createGuideMousePressed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -35,12 +38,12 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="createExperienceMouseClicked"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="btnCreerExperience">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cr&#xe9;er"/>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem1MousePressed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCreerExperienceMousePressed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listeExperience">
@@ -59,6 +62,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newsletterManageMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newsletterManageMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="recommandUser">
@@ -72,6 +76,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManageMousePressed"/>
           </Events>
         </Menu>
       </SubComponents>
